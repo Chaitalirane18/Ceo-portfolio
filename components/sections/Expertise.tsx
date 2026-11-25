@@ -7,6 +7,11 @@ import { expertise, type ExpertiseItem } from "@/data/expertise";
 
 const M = motion as any;
 
+const item = {
+  hidden: { opacity: 0, x: 28 },
+  show: { opacity: 1, x: 0, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
+};
+
 /**
  * Modern Kinetic Expertise Section.
  * Replaces generic box cards with an interactive dual-pillar kinetic stream:
@@ -52,8 +57,6 @@ export default function Expertise() {
         {/* Cinematic Dual-Pillar Interactive Matrix (NO CARDS!) */}
         <div
           className="expertise-matrix-grid"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
         >
           {/* Left Column: Dynamic Capability Radar & Live Focus Console */}
           <div className="expertise-console-col">
@@ -88,31 +91,34 @@ export default function Expertise() {
                 <M.div
                   key={activeItem.num}
                   className="console-content-stage"
-                  initial={reduce ? false : { opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -16 }}
-                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  initial="hidden"
+                  animate="show"
+                  exit={{ opacity: 0, x: -24, transition: { duration: 0.25 } }}
+                  variants={{
+                    hidden: {},
+                    show: { transition: { staggerChildren: reduce ? 0 : 0.07 } },
+                  }}
                 >
-                  <div className="console-icon-halo">
+                  <M.div className="console-icon-halo" variants={item}>
                     <Icon name={activeItem.icon} />
                     <span className="console-num-watermark">{activeItem.num}</span>
-                  </div>
+                  </M.div>
 
-                  <h3 className="console-domain-title">{activeItem.title}</h3>
-                  <p className="console-domain-desc">{activeItem.text}</p>
+                  <M.h3 className="console-domain-title" variants={item}>{activeItem.title}</M.h3>
+                  <M.p className="console-domain-desc" variants={item}>{activeItem.text}</M.p>
 
-                  <div className="console-scope-box">
+                  <M.div className="console-scope-box" variants={item}>
                     <span className="scope-label">Strategic Focus</span>
                     <p className="scope-text">{activeItem.scope}</p>
-                  </div>
+                  </M.div>
 
-                  <div className="console-tags-cloud">
+                  <M.div className="console-tags-cloud" variants={item}>
                     {activeItem.tags.map((tag) => (
                       <span key={tag} className="console-tag-pill">
                         {tag}
                       </span>
                     ))}
-                  </div>
+                  </M.div>
                 </M.div>
               </AnimatePresence>
 
@@ -127,7 +133,11 @@ export default function Expertise() {
           </div>
 
           {/* Right Column: Kinetic Editorial Stream (NO CARDS!) */}
-          <div className="expertise-stream-col">
+          <div
+            className="expertise-stream-col"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+          >
             <div className="stream-header-strip">
               <span>EXPLORE ALL 8 CORE PILLARS</span>
               <span>SELECT TO INSPECT DOMAIN</span>
@@ -427,8 +437,9 @@ const expertiseStyles = `
 
 .console-num-watermark {
   position: absolute;
-  right: -50px;
-  top: -10px;
+  left: 84px;
+  top: 8px;
+  line-height: 1;
   font-family: var(--font-head);
   font-size: 48px;
   font-weight: 900;

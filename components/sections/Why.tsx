@@ -217,8 +217,13 @@ const whyCss = `
 .why-top-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 14px;
   margin-bottom: 14px;
+}
+
+.why-click-hint {
+  margin-left: auto;
 }
 
 .why-num-watermark {
