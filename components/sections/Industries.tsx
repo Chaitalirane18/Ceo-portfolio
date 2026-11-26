@@ -57,7 +57,7 @@ export default function Industries() {
     <section className="section industries-interactive-section" id="industries" aria-labelledby="industries-title">
       <style dangerouslySetInnerHTML={{ __html: industriesCss }} />
       <div className="container">
-        <Reveal className="section-head text-center">
+        <Reveal className="section-head text-center mx-auto">
           <div className="industries-eyebrow-pill">
             <span className="dot-pulse" />
             <span>VERTICAL EXPERTISE · 9 KEY DOMAINS</span>

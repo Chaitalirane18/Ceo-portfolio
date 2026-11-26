@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type PointerEvent } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import Icon from "@/components/Icon";
 import { products, type Product } from "@/data/products";
@@ -9,30 +9,10 @@ import DemoLink from "./DemoLink";
 
 const M = motion as any;
 
+/** All products in one compact grid (no scrolling). Clicking a card opens the full details dialog. */
 export default function ProductCarousel() {
   const reduce = useReducedMotion();
-  const track = useRef<HTMLDivElement>(null);
-  const drag = useRef({ down: false, x: 0, left: 0, moved: 0 });
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-
-  const by = (dir: number) => {
-    const t = track.current;
-    if (!t) return;
-    const card = t.querySelector<HTMLElement>(".pc-slide");
-    t.scrollBy({ left: dir * ((card?.offsetWidth ?? 270) + 24), behavior: "smooth" });
-  };
-
-  const pauseUntil = useRef(0);
-  useEffect(() => {
-    if (selectedProduct || reduce) return;
-    const id = setInterval(() => {
-      const t = track.current;
-      if (!t || document.hidden || Date.now() < pauseUntil.current) return;
-      if (t.scrollLeft >= t.scrollWidth - t.clientWidth - 4) t.scrollTo({ left: 0, behavior: "smooth" });
-      else by(1);
-    }, 4000);
-    return () => clearInterval(id);
-  }, [selectedProduct, reduce]);
 
   // Lock background scroll when modal is open
   useEffect(() => {
@@ -51,33 +31,6 @@ export default function ProductCarousel() {
     }
   }, [selectedProduct]);
 
-  const down = (e: PointerEvent<HTMLDivElement>) => {
-    if (e.pointerType !== "mouse") return;
-    const t = track.current!;
-    pauseUntil.current = Date.now() + 8000;
-    drag.current = { down: true, x: e.clientX, left: t.scrollLeft, moved: 0 };
-  };
-  const move = (e: PointerEvent<HTMLDivElement>) => {
-    const d = drag.current;
-    if (!d.down) return;
-    const dx = e.clientX - d.x;
-    d.moved = Math.max(d.moved, Math.abs(dx));
-    if (d.moved > 5) {
-      track.current!.classList.add("is-dragging");
-      track.current!.scrollLeft = d.left - dx;
-    }
-  };
-  const up = () => {
-    drag.current.down = false;
-    track.current?.classList.remove("is-dragging");
-  };
-
-  const handleCardClick = (p: Product) => {
-    if (drag.current.moved <= 5) {
-      setSelectedProduct(p);
-    }
-  };
-
   const handleRequestDemoFromModal = (p: Product) => {
     setSelectedProduct(null);
     window.dispatchEvent(new CustomEvent(EVT_ENQUIRE, { detail: p.name }));
@@ -88,53 +41,16 @@ export default function ProductCarousel() {
   };
 
   return (
-    <div className="carousel">
+    <div>
       <style dangerouslySetInnerHTML={{ __html: productModalCss }} />
 
-      <div className="container carousel-bar !justify-center">
-        <p className="carousel-hint">
-          <span className="click-pill-tag">Interactive</span> Click a card for full details. Drag, swipe or use the arrows.
-        </p>
-      </div>
-
-      <div
-        className="carousel-stage"
-        onMouseEnter={() => { pauseUntil.current = Infinity; }}
-        onMouseLeave={() => { pauseUntil.current = Date.now() + 1500; }}
-        onFocus={() => { pauseUntil.current = Infinity; }}
-        onBlur={() => { pauseUntil.current = Date.now() + 1500; }}
-        onTouchStart={() => { pauseUntil.current = Date.now() + 8000; }}
-      >
-        <button type="button" className="round-btn carousel-arrow carousel-arrow--prev" onClick={() => by(-1)} aria-label="Previous products">
-          <Icon name="arrow" className="flip" />
-        </button>
-        <button type="button" className="round-btn carousel-arrow carousel-arrow--next" onClick={() => by(1)} aria-label="Next products">
-          <Icon name="arrow" />
-        </button>
-
-        <div
-          className="carousel-track"
-          ref={track}
-          tabIndex={0}
-          role="region"
-          aria-label="Products"
-          onPointerDown={down}
-          onPointerMove={move}
-          onPointerUp={up}
-          onPointerLeave={up}
-          onClickCapture={(e) => {
-            if (drag.current.moved > 5) {
-              e.preventDefault();
-              e.stopPropagation();
-              drag.current.moved = 0;
-            }
-          }}
-        >
+      <div className="container">
+        <div className="grid grid-cols-4 gap-3.5 max-lg:grid-cols-3 max-md:grid-cols-2 max-[480px]:grid-cols-1">
           {products.map((p, i) => (
             <article
-              className="pc-slide group flex h-[300px] w-[270px] flex-none cursor-pointer snap-start flex-col rounded-2xl border border-[#d9e1e7] bg-white p-5 shadow-[0_6px_20px_rgba(31,58,77,0.06)] transition duration-200 hover:-translate-y-1 hover:border-[#0072a7]/40 hover:shadow-[0_14px_30px_rgba(0,114,167,0.14)] max-sm:w-[250px]"
               key={p.name}
-              onClick={() => handleCardClick(p)}
+              className="group flex cursor-pointer flex-col rounded-xl border border-[#d9e1e7] bg-white p-4 shadow-[0_4px_14px_rgba(31,58,77,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-[#0072a7]/40 hover:shadow-[0_12px_26px_rgba(0,114,167,0.13)]"
+              onClick={() => setSelectedProduct(p)}
               role="button"
               tabIndex={0}
               onKeyDown={(e) => {
@@ -145,30 +61,19 @@ export default function ProductCarousel() {
               }}
               aria-label={`Open details for ${p.name}`}
             >
-              <div className="mb-3 flex items-center justify-between">
-                <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#0072a7]/10 text-[#0072a7] transition-colors group-hover:bg-[#0072a7] group-hover:text-white [&_.icon]:h-5 [&_.icon]:w-5">
+              <div className="mb-2.5 flex items-center justify-between">
+                <span className="grid h-9 w-9 place-items-center rounded-lg bg-[#0072a7]/10 text-[#0072a7] transition-colors group-hover:bg-[#0072a7] group-hover:text-white [&_.icon]:h-[18px] [&_.icon]:w-[18px]">
                   <Icon name={p.icon} />
                 </span>
-                <span className="font-head text-xs font-extrabold tracking-[0.08em] text-[#8a97a0]" aria-hidden="true">
+                <span className="font-head text-[11px] font-extrabold tracking-[0.08em] text-[#9aa7b0]" aria-hidden="true">
                   {String(i + 1).padStart(2, "0")}
                 </span>
               </div>
 
-              <h3 className="m-0 line-clamp-2 min-h-[44px] font-head text-[17px] font-extrabold leading-snug text-[#1f3a4d]">{p.name}</h3>
-              <p className="m-0 mt-1 line-clamp-1 text-[13px] font-semibold text-[#0072a7]">{p.category}</p>
-              <p className="m-0 mt-2 line-clamp-2 text-[13px] leading-relaxed text-[#46586f]">{p.desc}</p>
+              <h3 className="m-0 line-clamp-1 font-head text-[15px] font-extrabold leading-snug text-[#1f3a4d]">{p.name}</h3>
+              <p className="m-0 mt-0.5 line-clamp-1 text-xs font-semibold text-[#0072a7]">{p.category}</p>
+              <p className="m-0 mt-1.5 line-clamp-2 text-xs leading-relaxed text-[#5a6b7b]">{p.desc}</p>
 
-              <div className="mt-auto flex items-center justify-between gap-2 border-t border-[#e1e8ed] pt-3 [&_.text-link]:!gap-1.5 [&_.text-link]:!text-[13px] [&_.text-link_.icon]:!h-3.5 [&_.text-link_.icon]:!w-3.5" onClick={(e) => e.stopPropagation()}>
-                {p.url ? (
-                  <a className="text-link" href={p.url} target="_blank" rel="noopener noreferrer" draggable={false}>
-                    Explore <Icon name="out" />
-                    <span className="visually-hidden"> {p.name} (opens in a new tab)</span>
-                  </a>
-                ) : (
-                  <span className="inline-flex items-center gap-1.5 font-head text-[13px] font-bold text-[#46586f] group-hover:text-[#0072a7]">View details</span>
-                )}
-                <DemoLink product={p.name} />
-              </div>
             </article>
           ))}
         </div>

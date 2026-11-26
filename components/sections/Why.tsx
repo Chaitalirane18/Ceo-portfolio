@@ -77,7 +77,7 @@ export default function Why() {
   return (
     <section className="section relative bg-gradient-to-b from-[#e9eff4] via-[#f7f8f9] to-white" id="why" aria-labelledby="why-title">
       <div className="container">
-        <Reveal className="section-head text-center">
+        <Reveal className="section-head text-center mx-auto">
           <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/10 px-4 py-[5px] font-head text-[11px] font-bold uppercase tracking-[0.12em] text-brand-royal">
             <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_0_3px_rgba(240,124,0,0.25)]" />
             <span>THE SOULSOFT ADVANTAGE</span>
