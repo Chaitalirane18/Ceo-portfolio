@@ -12,7 +12,6 @@ export const nav = [
 /** Sections that exist on the page but are not in the main menu; linked from the footer. */
 export const extraLinks = [
   { href: "#why", label: "Why Soulsoft" },
-  { href: "#careers", label: "Careers" },
 ];
 
 export const phones = [

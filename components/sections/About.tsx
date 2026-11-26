@@ -134,7 +134,7 @@ export default function About() {
             <div className="dossier-profile-header">
               <div className="dossier-avatar-wrap">
                 <Image
-                  src="/prasad.jpg"
+                  src="/prasad-godage.jpg"
                   alt="Prasad Shivaji Godage"
                   width={72}
                   height={72}
@@ -196,15 +196,15 @@ export default function About() {
 
 const aboutStyles = `
 /* ==========================================================================
-   Single-Screen About Section (Soulsoft Brand: #003349, #0072a7, #f07c00)
+   Single-Screen About Section (Soulsoft Brand: #0b2c3e, #1a658d, #f07c00)
    ========================================================================== */
 .about-single-screen {
   position: relative;
   overflow: hidden;
   padding: clamp(32px, 4.5vh, 48px) 0;
-  background: radial-gradient(120% 80% at 50% 0%, #ffffff 0%, #f0f7fc 60%, #e8f3fa 100%);
-  border-top: 1px solid rgba(0, 114, 167, 0.12);
-  border-bottom: 1px solid rgba(0, 114, 167, 0.12);
+  background: radial-gradient(120% 80% at 50% 0%, #ffffff 0%, #f5f6f7 60%, #f0f1f2 100%);
+  border-top: 1px solid rgba(26, 101, 141, 0.12);
+  border-bottom: 1px solid rgba(26, 101, 141, 0.12);
 }
 
 .about-viewport-container {
@@ -228,14 +228,14 @@ const aboutStyles = `
   margin-bottom: 10px;
   border-radius: 999px;
   background: #ffffff;
-  border: 1px solid rgba(0, 114, 167, 0.2);
-  box-shadow: 0 2px 8px rgba(0, 51, 73, 0.05);
+  border: 1px solid rgba(26, 101, 141, 0.2);
+  box-shadow: 0 2px 8px rgba(11, 44, 62, 0.05);
   font-family: var(--font-head);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #0072a7;
+  color: #1a658d;
 }
 
 .brand-dot-orange {
@@ -250,7 +250,7 @@ const aboutStyles = `
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #0072a7;
+  background: #1a658d;
 }
 
 .about-title-compact {
@@ -259,11 +259,11 @@ const aboutStyles = `
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: -0.02em;
-  color: #003349;
+  color: #0b2c3e;
 }
 
 .title-gradient-soulsoft {
-  background: linear-gradient(135deg, #0072a7 0%, #0093d5 50%, #f07c00 100%);
+  background: linear-gradient(135deg, #1a658d 0%, #2180b4 50%, #f07c00 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -285,8 +285,8 @@ const aboutStyles = `
   padding: clamp(22px, 3vh, 32px);
   border-radius: 20px;
   background: #ffffff;
-  border: 1.5px solid rgba(0, 114, 167, 0.15);
-  box-shadow: 0 10px 30px rgba(0, 51, 73, 0.05);
+  border: 1.5px solid rgba(26, 101, 141, 0.15);
+  box-shadow: 0 10px 30px rgba(11, 44, 62, 0.05);
 }
 
 .story-top-label {
@@ -306,14 +306,14 @@ const aboutStyles = `
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  background: rgba(0, 114, 167, 0.1);
-  color: #0072a7;
-  border: 1px solid rgba(0, 114, 167, 0.2);
+  background: rgba(26, 101, 141, 0.1);
+  color: #1a658d;
+  border: 1px solid rgba(26, 101, 141, 0.2);
 }
 
 .label-sub-text {
   font-size: 13px;
-  color: #64748b;
+  color: #707a7f;
   font-weight: 500;
 }
 
@@ -323,16 +323,16 @@ const aboutStyles = `
   gap: 8px;
   font-size: clamp(14px, 1.35vw, 15px);
   line-height: 1.6;
-  color: #334155;
+  color: #3e464a;
   margin-bottom: 14px;
 }
 
 .story-main-copy strong {
-  color: #003349;
+  color: #0b2c3e;
 }
 
 .p-highlight {
-  color: #1e293b;
+  color: #272e32;
 }
 
 /* Vision Box */
@@ -342,14 +342,14 @@ const aboutStyles = `
   padding: 12px 18px;
   margin-bottom: 16px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #f0f8fd 0%, #e6f3fa 100%);
-  border: 1px solid rgba(0, 114, 167, 0.16);
+  background: linear-gradient(135deg, #f6f7f7 0%, #eff0f1 100%);
+  border: 1px solid rgba(26, 101, 141, 0.16);
 }
 
 .vision-accent-bar {
   width: 4px;
   border-radius: 4px;
-  background: linear-gradient(180deg, #f07c00 0%, #0072a7 100%);
+  background: linear-gradient(180deg, #f07c00 0%, #1a658d 100%);
   flex: none;
 }
 
@@ -364,7 +364,7 @@ const aboutStyles = `
   font-size: clamp(14px, 1.4vw, 16px);
   font-weight: 700;
   line-height: 1.4;
-  color: #003349;
+  color: #0b2c3e;
   margin: 0;
 }
 
@@ -380,11 +380,11 @@ const aboutStyles = `
   gap: 4px;
   font-size: 11px;
   font-weight: 700;
-  color: #0072a7;
+  color: #1a658d;
   background: #ffffff;
   padding: 2px 8px;
   border-radius: 4px;
-  border: 1px solid rgba(0, 114, 167, 0.2);
+  border: 1px solid rgba(26, 101, 141, 0.2);
 }
 
 .v-chip .icon {
@@ -401,14 +401,14 @@ const aboutStyles = `
   padding: 12px 14px;
   margin-bottom: 16px;
   border-radius: 12px;
-  background: #f8fafc;
-  border: 1px solid rgba(226, 232, 240, 0.9);
+  background: #fafafa;
+  border: 1px solid rgba(232, 233, 234, 0.9);
 }
 
 .stat-compact-item {
   display: flex;
   flex-direction: column;
-  border-left: 1px solid rgba(0, 114, 167, 0.15);
+  border-left: 1px solid rgba(26, 101, 141, 0.15);
   padding-left: 10px;
 }
 
@@ -422,7 +422,7 @@ const aboutStyles = `
   font-size: clamp(20px, 2.2vw, 26px);
   font-weight: 800;
   line-height: 1.1;
-  color: #0072a7;
+  color: #1a658d;
 }
 
 .stat-suffix {
@@ -433,14 +433,14 @@ const aboutStyles = `
   font-family: var(--font-head);
   font-size: 11px;
   font-weight: 700;
-  color: #003349;
+  color: #0b2c3e;
   margin-top: 2px;
   line-height: 1.25;
 }
 
 .stat-sub {
   font-size: 10px;
-  color: #64748b;
+  color: #707a7f;
   line-height: 1.2;
 }
 
@@ -461,16 +461,16 @@ const aboutStyles = `
   font-size: 13px;
   font-weight: 700;
   color: #ffffff;
-  background: linear-gradient(135deg, #0072a7 0%, #005a87 100%);
+  background: linear-gradient(135deg, #1a658d 0%, #155172 100%);
   border: none;
   text-decoration: none;
-  box-shadow: 0 4px 12px rgba(0, 114, 167, 0.3);
+  box-shadow: 0 4px 12px rgba(26, 101, 141, 0.3);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .btn-soulsoft-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 18px rgba(0, 114, 167, 0.45);
+  box-shadow: 0 6px 18px rgba(26, 101, 141, 0.45);
 }
 
 .btn-soulsoft-primary .icon {
@@ -487,17 +487,17 @@ const aboutStyles = `
   font-family: var(--font-head);
   font-size: 13px;
   font-weight: 700;
-  color: #003349;
+  color: #0b2c3e;
   background: transparent;
-  border: 1.5px solid rgba(0, 114, 167, 0.3);
+  border: 1.5px solid rgba(26, 101, 141, 0.3);
   text-decoration: none;
   transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
 
 .btn-soulsoft-outline:hover {
-  background: rgba(0, 114, 167, 0.08);
-  border-color: #0072a7;
-  color: #0072a7;
+  background: rgba(26, 101, 141, 0.08);
+  border-color: #1a658d;
+  color: #1a658d;
 }
 
 .btn-soulsoft-outline .icon {
@@ -514,9 +514,9 @@ const aboutStyles = `
   justify-content: space-between;
   padding: clamp(24px, 3vh, 32px);
   border-radius: 20px;
-  background: linear-gradient(145deg, #002738 0%, #003349 55%, #004461 100%);
-  border: 1.5px solid rgba(0, 114, 167, 0.35);
-  box-shadow: 0 16px 40px rgba(0, 51, 73, 0.25);
+  background: linear-gradient(145deg, #09222f 0%, #0b2c3e 55%, #0f3a52 100%);
+  border: 1.5px solid rgba(26, 101, 141, 0.35);
+  box-shadow: 0 16px 40px rgba(11, 44, 62, 0.25);
   color: #ffffff;
 }
 
@@ -539,7 +539,7 @@ const aboutStyles = `
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 114, 167, 0.4), transparent 70%);
+  background: radial-gradient(circle, rgba(26, 101, 141, 0.4), transparent 70%);
   pointer-events: none;
   filter: blur(45px);
 }
@@ -582,7 +582,7 @@ const aboutStyles = `
   height: 14px;
   border-radius: 50%;
   background: #16a34a;
-  border: 2px solid #003349;
+  border: 2px solid #0b2c3e;
 }
 
 .dossier-meta {
@@ -640,8 +640,8 @@ const aboutStyles = `
   width: 30px;
   height: 30px;
   border-radius: 8px;
-  background: rgba(0, 114, 167, 0.35);
-  color: #5bb8ea;
+  background: rgba(26, 101, 141, 0.35);
+  color: #72b1d3;
 }
 
 .row-icon-halo .icon {
@@ -661,7 +661,7 @@ const aboutStyles = `
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #5bb8ea;
+  color: #72b1d3;
 }
 
 .row-value {

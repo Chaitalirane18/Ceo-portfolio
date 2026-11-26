@@ -18,7 +18,7 @@ export default function Portrait() {
       <div className="portrait-ring" aria-hidden="true" />
       <div className={`portrait-frame${missing ? " is-empty" : ""}`}>
         <Image
-          src="/prasad.jpg"
+          src="/prasad-godage.jpg"
           width={800}
           height={1000}
           alt="Portrait of Prasad Shivaji Godage, Founder and CEO of Soulsoft Infotech"

@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="site-footer">
       <div className="container">
-        <div className="grid">
+        <div className="grid-12">
           <div className="span-5">
             <a className="brand" href="#home">PRASAD GODAGE</a>
             <p className="footer-role">Founder &amp; CEO | Soulsoft Infotech Private Limited</p>

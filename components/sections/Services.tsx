@@ -31,32 +31,39 @@ export default function Services() {
   }, [isPaused, reduce]);
 
   return (
-    <section className="services-motion-section" id="services" aria-labelledby="services-title">
-      <style dangerouslySetInnerHTML={{ __html: servicesStyles }} />
-
+    <section
+      className="relative overflow-hidden border-y border-[#1a658d]/[0.12] bg-gradient-to-b from-[#f5f6f7] via-[#fafafa] to-[#f6f7f8] py-[clamp(72px,9vh,112px)] text-[#181e21] before:pointer-events-none before:absolute before:-top-[120px] before:left-[10%] before:h-[520px] before:w-[520px] before:rounded-full before:bg-[radial-gradient(circle,rgba(26,101,141,0.12),transparent_70%)] before:blur-[80px] before:content-[''] after:pointer-events-none after:absolute after:-bottom-[120px] after:right-[8%] after:h-[520px] after:w-[520px] after:rounded-full after:bg-[radial-gradient(circle,rgba(240,124,0,0.1),transparent_70%)] after:blur-[80px] after:content-['']"
+      id="services"
+      aria-labelledby="services-title"
+    >
       <div className="container">
-        {/* Section Header */}
-        <div className="services-header text-center">
-          <div className="services-eyebrow-badge">
-            <span className="services-pulse-orange" aria-hidden="true" />
+        {/* Header */}
+        <div className="relative z-[1] mx-auto mb-[clamp(36px,5vh,48px)] max-w-[880px] text-center">
+          <div className="mb-3.5 inline-flex items-center gap-2 rounded-full border border-[#1a658d]/[0.22] bg-[#1a658d]/[0.08] px-[18px] py-1.5 font-head text-xs font-bold uppercase tracking-[0.14em] text-[#1a658d]">
+            <span className="h-[7px] w-[7px] rounded-full bg-accent shadow-[0_0_0_3px_rgba(240,124,0,0.25)]" aria-hidden="true" />
             <span>OUR PROJECT-BASED SERVICES · ENTERPRISE CAPABILITIES</span>
-            <span className="services-pulse-blue" aria-hidden="true" />
+            <span className="h-[7px] w-[7px] rounded-full bg-[#1a658d]" aria-hidden="true" />
           </div>
-          <h2 id="services-title" className="services-main-title">
-            End-to-End Software, Integration &amp; <span className="title-gradient-soulsoft">Modernization Services.</span>
+          <h2 id="services-title" className="font-head text-[clamp(32px,4vw,48px)] font-extrabold leading-[1.15] tracking-[-0.02em] text-[#09222f] [text-wrap:balance]">
+            End-to-End Software, Integration &amp;{" "}
+            <span className="bg-gradient-to-br from-[#1a658d] via-[#2180b4] to-accent bg-clip-text text-transparent">Modernization Services.</span>
           </h2>
-          <p className="services-lead-text">
+          <p className="mx-auto mt-3.5 max-w-[68ch] text-[clamp(15px,1.6vw,18px)] leading-[1.65] text-[#525a5e]">
             From greenfield custom engineering and cloud migration to mission-critical ERP integrations and business process automation.
           </p>
         </div>
 
-        {/* 4-Category Motion Interactive Tab Selector */}
+        {/* Tabs */}
         <div
-          className="services-tabs-bar-wrap"
+          className="relative z-[1] mb-[clamp(28px,4vh,40px)] flex justify-center"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          <div className="services-tabs-bar" role="tablist" aria-label="Service categories">
+          <div
+            className="flex max-w-full flex-wrap items-center justify-center gap-1.5 rounded-full border-[1.5px] border-[#1a658d]/[0.18] bg-white p-1.5 shadow-[0_8px_30px_rgba(11,44,62,0.08)] max-md:w-full max-md:rounded-2xl"
+            role="tablist"
+            aria-label="Service categories"
+          >
             {services.map((s, idx) => {
               const isActive = activeTab === idx;
               return (
@@ -67,34 +74,38 @@ export default function Services() {
                   id={`service-tab-${idx}`}
                   aria-selected={isActive}
                   aria-controls={`service-panel-${idx}`}
-                  className={`service-nav-tab${isActive ? " is-active" : ""}`}
+                  className={`relative inline-flex cursor-pointer items-center gap-2.5 whitespace-nowrap rounded-full border-none bg-transparent px-6 py-3 font-head text-sm font-bold transition-colors duration-200 max-md:flex-[1_1_calc(50%-6px)] max-md:justify-center max-md:px-3.5 max-md:py-2.5 max-md:text-[13px] max-[560px]:flex-[1_1_100%] max-[560px]:justify-start ${
+                    isActive ? "text-white" : "text-[#525a5e] hover:text-[#09222f]"
+                  }`}
                   onClick={() => setActiveTab(idx)}
                 >
                   {isActive && (
                     <M.span
                       layoutId="activeServiceTabPill"
-                      className="service-active-pill"
+                      className="absolute inset-0 z-0 rounded-full bg-gradient-to-br from-[#09222f] to-[#0e384e] shadow-[0_4px_16px_rgba(9,34,47,0.25)]"
                       transition={{ type: "spring", stiffness: 450, damping: 35 }}
                     />
                   )}
-                  <span className="tab-num-chip">{s.num}</span>
-                  <span className="tab-title-text">{s.title}</span>
+                  <span className={`relative z-[1] rounded px-[7px] py-0.5 text-[11px] font-extrabold transition-colors ${isActive ? "bg-accent text-white" : "bg-[#1a658d]/[0.12] text-[#1a658d]"}`}>
+                    {s.num}
+                  </span>
+                  <span className="relative z-[1] tracking-[0.02em]">{s.title}</span>
                 </button>
               );
             })}
           </div>
         </div>
 
-        {/* Cinematic Animated Interactive Stage */}
+        {/* Stage */}
         <div
-          className="services-stage-container"
+          className="relative z-[1]"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
           <AnimatePresence mode="wait">
             <M.div
               key={cur.id}
-              className="services-stage-deck"
+              className="grid gap-[clamp(32px,4vw,56px)] rounded-[28px] border-[1.5px] border-[#1a658d]/[0.16] bg-white p-[clamp(36px,4.5vw,52px)] shadow-[0_20px_50px_rgba(11,44,62,0.08),0_1px_3px_rgba(0,0,0,0.04)] [grid-template-columns:minmax(0,1.15fr)_minmax(0,1fr)] max-lg:grid-cols-1 max-lg:gap-9 max-lg:px-6 max-lg:py-8"
               initial={reduce ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -103,27 +114,26 @@ export default function Services() {
               id={`service-panel-${activeTab}`}
               aria-labelledby={`service-tab-${activeTab}`}
             >
-              {/* Left Column: Category Narrative, Standards & CTA */}
-              <div className="stage-left-col">
-                <div className="stage-top-meta">
-                  <div className="stage-icon-halo">
+              {/* Left */}
+              <div className="flex flex-col justify-between">
+                <div className="mb-5 flex items-center gap-[18px]">
+                  <div className="relative grid h-16 w-16 flex-none place-items-center rounded-[18px] border-[1.5px] border-accent/35 bg-gradient-to-br from-[#1a658d]/[0.12] to-accent/[0.12] text-accent shadow-[0_6px_18px_rgba(240,124,0,0.12)] [&_.icon]:h-8 [&_.icon]:w-8">
                     <Icon name={cur.icon} />
-                    <span className="stage-num-watermark">{cur.num}</span>
+                    <span className="pointer-events-none absolute -right-8 -top-3 font-head text-4xl font-black text-[#09222f]/[0.06]">{cur.num}</span>
                   </div>
                   <div>
-                    <span className="stage-tagline">{cur.tagline}</span>
-                    <h3 className="stage-category-title">{cur.title}</h3>
+                    <span className="mb-1 block font-head text-xs font-bold uppercase tracking-[0.12em] text-accent-ink">{cur.tagline}</span>
+                    <h3 className="m-0 font-head text-[clamp(24px,2.5vw,32px)] font-extrabold tracking-[-0.015em] text-[#09222f]">{cur.title}</h3>
                   </div>
                 </div>
 
-                <p className="stage-lead-p">{cur.lead}</p>
+                <p className="mb-7 text-base leading-[1.7] text-[#525a5e]">{cur.lead}</p>
 
-                {/* Delivery Standards Box */}
-                <div className="stage-standards-box">
-                  <span className="standards-label">Delivery Standards</span>
-                  <div className="standards-grid">
+                <div className="mb-7 rounded-2xl border border-[#1a658d]/[0.12] bg-[#fafafa] px-[22px] py-[18px]">
+                  <span className="mb-3 block font-head text-[11px] font-bold uppercase tracking-[0.1em] text-[#1a658d]">Delivery Standards</span>
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 max-md:grid-cols-1">
                     {standards.map((std) => (
-                      <div key={std.text} className="standard-chip">
+                      <div key={std.text} className="flex items-center gap-2 text-[13px] font-semibold text-[#272e32] [&_.icon]:h-[15px] [&_.icon]:w-[15px] [&_.icon]:flex-none [&_.icon]:text-accent">
                         <Icon name={std.icon} />
                         <span>{std.text}</span>
                       </div>
@@ -131,40 +141,43 @@ export default function Services() {
                   </div>
                 </div>
 
-                <div className="stage-action-wrap">
-                  <a className="btn-service-action" href="#contact">
+                <div className="mt-1">
+                  <a
+                    className="group inline-flex items-center gap-2.5 rounded-xl bg-gradient-to-br from-accent to-[#ff9826] px-[26px] py-[13px] font-head text-sm font-bold text-white shadow-[0_4px_16px_rgba(240,124,0,0.3)] transition duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(240,124,0,0.45)]"
+                    href="#contact"
+                  >
                     <span>Discuss {cur.title}</span>
-                    <Icon name="arrow" />
+                    <Icon name="arrow" className="!h-4 !w-4 transition-transform duration-200 group-hover:translate-x-1" />
                   </a>
                 </div>
               </div>
 
-              {/* Right Column: 5 Interactive Kinetic Capability Blocks */}
-              <div className="stage-right-col">
-                <div className="capabilities-header">
+              {/* Right */}
+              <div className="flex flex-col">
+                <div className="mb-3.5 flex justify-between border-b-[1.5px] border-[#1a658d]/[0.16] pb-3 font-head text-[11px] font-bold uppercase tracking-[0.1em] text-[#707a7f]">
                   <span>KEY CAPABILITIES &amp; DELIVERABLES</span>
                   <span>5 SPECIALIZATIONS</span>
                 </div>
 
-                <div className="capabilities-stack">
+                <div className="flex flex-col gap-3">
                   {cur.capabilities.map((cap, i) => (
                     <M.div
                       key={cap.name}
-                      className="capability-motion-row"
+                      className="group grid items-center gap-4 rounded-[14px] border border-[#1a658d]/[0.12] bg-[#fafafa] px-5 py-4 [grid-template-columns:36px_minmax(0,1fr)_28px] transition duration-200 hover:translate-x-1.5 hover:border-[#1a658d]/35 hover:bg-white hover:shadow-[0_8px_24px_rgba(26,101,141,0.12)] max-[560px]:px-3.5 max-[560px]:py-3"
                       initial={reduce ? false : { opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.35, delay: i * 0.06 }}
                     >
-                      <div className="cap-index-box">
+                      <div className="grid h-[34px] w-[34px] place-items-center rounded-lg bg-[#1a658d]/10 font-head text-[13px] font-extrabold text-[#1a658d] transition-colors duration-200 group-hover:bg-accent group-hover:text-white">
                         <span>0{i + 1}</span>
                       </div>
 
-                      <div className="cap-text-block">
-                        <strong className="cap-name">{cap.name}</strong>
-                        <span className="cap-tag-pill">{cap.tag}</span>
+                      <div className="flex flex-col gap-1">
+                        <strong className="font-head text-[15px] font-bold leading-[1.35] text-[#181e21]">{cap.name}</strong>
+                        <span className="inline-block self-start rounded border border-[#1a658d]/[0.18] bg-[#1a658d]/[0.08] px-2 py-0.5 text-[11px] font-semibold text-[#1a658d]">{cap.tag}</span>
                       </div>
 
-                      <div className="cap-action-mark">
+                      <div className="text-[#a0a8ac] transition duration-200 group-hover:translate-x-1 group-hover:text-accent [&_.icon]:h-4 [&_.icon]:w-4">
                         <Icon name="arrow" />
                       </div>
                     </M.div>
@@ -174,627 +187,7 @@ export default function Services() {
             </M.div>
           </AnimatePresence>
         </div>
-
-        {/* Bottom Collaboration Callout Banner */}
-        <div className="services-bottom-cta-banner">
-          <div className="cta-banner-content">
-            <span className="cta-seal-icon">
-              <Icon name="award" />
-            </span>
-            <div>
-              <h4>Need a dedicated development team or architectural consultation?</h4>
-              <p>
-                We collaborate directly with founders, executives, and enterprise teams to design, architect, and execute tailored software roadmaps.
-              </p>
-            </div>
-          </div>
-
-          <a className="btn-banner-contact" href="#contact">
-            <span>Initiate Project Discussion</span>
-            <Icon name="arrow" />
-          </a>
-        </div>
       </div>
     </section>
   );
 }
-
-const servicesStyles = `
-/* ==========================================================================
-   Services Section — Motion-Driven Executive Hub (Light Theme)
-   Colors: Soft ice blue/white background, Soulsoft Navy (#002738 / #003349), 
-           Ocean Blue (#0072a7 / #0093d5), Brand Orange (#f07c00)
-   ========================================================================== */
-.services-motion-section {
-  position: relative;
-  overflow: hidden;
-  padding: clamp(72px, 9vh, 112px) 0;
-  background: linear-gradient(180deg, #f0f7fc 0%, #f8fafc 50%, #eff6ff 100%);
-  color: #0f172a;
-  border-top: 1px solid rgba(0, 114, 167, 0.12);
-  border-bottom: 1px solid rgba(0, 114, 167, 0.12);
-}
-
-/* Ambient Halos for light background */
-.services-motion-section::before {
-  content: "";
-  position: absolute;
-  top: -120px;
-  left: 10%;
-  width: 520px;
-  height: 520px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 114, 167, 0.12), transparent 70%);
-  pointer-events: none;
-  filter: blur(80px);
-}
-
-.services-motion-section::after {
-  content: "";
-  position: absolute;
-  bottom: -120px;
-  right: 8%;
-  width: 520px;
-  height: 520px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(240, 124, 0, 0.1), transparent 70%);
-  pointer-events: none;
-  filter: blur(80px);
-}
-
-/* Header */
-.services-header {
-  position: relative;
-  z-index: 1;
-  max-width: 880px;
-  margin: 0 auto clamp(36px, 5vh, 48px);
-  text-align: center;
-}
-
-.services-eyebrow-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 18px;
-  margin-bottom: 14px;
-  border-radius: 999px;
-  background: rgba(0, 114, 167, 0.08);
-  border: 1px solid rgba(0, 114, 167, 0.22);
-  font-family: var(--font-head);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #0072a7;
-}
-
-.services-pulse-orange {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #f07c00;
-  box-shadow: 0 0 0 3px rgba(240, 124, 0, 0.25);
-}
-
-.services-pulse-blue {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #0072a7;
-}
-
-.services-main-title {
-  font-family: var(--font-head);
-  font-size: clamp(32px, 4vw, 48px);
-  font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-  color: #002738;
-  text-wrap: balance;
-}
-
-.title-gradient-soulsoft {
-  background: linear-gradient(135deg, #0072a7 0%, #0093d5 50%, #f07c00 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.services-lead-text {
-  max-width: 68ch;
-  margin: 14px auto 0;
-  font-size: clamp(15px, 1.6vw, 18px);
-  line-height: 1.65;
-  color: #475569;
-}
-
-/* ==========================================================================
-   4-Category Interactive Motion Navigation Tabs Bar (Light Theme)
-   ========================================================================== */
-.services-tabs-bar-wrap {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  margin-bottom: clamp(28px, 4vh, 40px);
-}
-
-.services-tabs-bar {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 6px;
-  border-radius: 999px;
-  background: #ffffff;
-  border: 1.5px solid rgba(0, 114, 167, 0.18);
-  box-shadow: 0 8px 30px rgba(0, 51, 73, 0.08);
-  max-width: 100%;
-}
-
-.service-nav-tab {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 24px;
-  border-radius: 999px;
-  background: transparent;
-  border: none;
-  font-family: var(--font-head);
-  font-size: 14px;
-  font-weight: 700;
-  color: #475569;
-  cursor: pointer;
-  transition: color 0.25s ease;
-  white-space: nowrap;
-}
-
-.service-nav-tab:hover {
-  color: #002738;
-}
-
-.service-nav-tab.is-active {
-  color: #ffffff;
-}
-
-.service-active-pill {
-  position: absolute;
-  inset: 0;
-  border-radius: 999px;
-  background: linear-gradient(135deg, #002738 0%, #003e5c 100%);
-  box-shadow: 0 4px 16px rgba(0, 39, 56, 0.25);
-  z-index: 0;
-}
-
-.tab-num-chip {
-  position: relative;
-  z-index: 1;
-  font-size: 11px;
-  font-weight: 800;
-  padding: 2px 7px;
-  border-radius: 4px;
-  background: rgba(0, 114, 167, 0.12);
-  color: #0072a7;
-  transition: background-color 0.2s, color 0.2s;
-}
-
-.service-nav-tab.is-active .tab-num-chip {
-  background: #f07c00;
-  color: #ffffff;
-}
-
-.tab-title-text {
-  position: relative;
-  z-index: 1;
-  letter-spacing: 0.02em;
-}
-
-/* ==========================================================================
-   Cinematic Animated Interactive Stage (Light Theme)
-   ========================================================================== */
-.services-stage-container {
-  position: relative;
-  z-index: 1;
-  margin-bottom: 48px;
-}
-
-.services-stage-deck {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-  gap: clamp(32px, 4vw, 56px);
-  padding: clamp(36px, 4.5vw, 52px);
-  border-radius: 28px;
-  background: #ffffff;
-  border: 1.5px solid rgba(0, 114, 167, 0.16);
-  box-shadow: 0 20px 50px rgba(0, 51, 73, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04);
-}
-
-/* Left Column */
-.stage-left-col {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.stage-top-meta {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  margin-bottom: 20px;
-}
-
-.stage-icon-halo {
-  position: relative;
-  display: grid;
-  place-items: center;
-  flex: none;
-  width: 64px;
-  height: 64px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, rgba(0, 114, 167, 0.12), rgba(240, 124, 0, 0.12));
-  border: 1.5px solid rgba(240, 124, 0, 0.35);
-  box-shadow: 0 6px 18px rgba(240, 124, 0, 0.12);
-  color: #f07c00;
-}
-
-.stage-icon-halo .icon {
-  width: 32px;
-  height: 32px;
-}
-
-.stage-num-watermark {
-  position: absolute;
-  right: -32px;
-  top: -12px;
-  font-family: var(--font-head);
-  font-size: 36px;
-  font-weight: 900;
-  color: rgba(0, 39, 56, 0.06);
-  pointer-events: none;
-}
-
-.stage-tagline {
-  display: block;
-  font-family: var(--font-head);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #f07c00;
-  margin-bottom: 4px;
-}
-
-.stage-category-title {
-  font-family: var(--font-head);
-  font-size: clamp(24px, 2.5vw, 32px);
-  font-weight: 800;
-  letter-spacing: -0.015em;
-  color: #002738;
-  margin: 0;
-}
-
-.stage-lead-p {
-  font-size: 16px;
-  line-height: 1.7;
-  color: #475569;
-  margin-bottom: 28px;
-}
-
-/* Delivery Standards Box */
-.stage-standards-box {
-  padding: 18px 22px;
-  border-radius: 16px;
-  background: #f8fafc;
-  border: 1px solid rgba(0, 114, 167, 0.12);
-  margin-bottom: 28px;
-}
-
-.standards-label {
-  display: block;
-  font-family: var(--font-head);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #0072a7;
-  margin-bottom: 12px;
-}
-
-.standards-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px 16px;
-}
-
-.standard-chip {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #1e293b;
-}
-
-.standard-chip .icon {
-  width: 15px;
-  height: 15px;
-  color: #f07c00;
-  flex: none;
-}
-
-/* Action Button */
-.stage-action-wrap {
-  margin-top: 4px;
-}
-
-.btn-service-action {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 13px 26px;
-  border-radius: 12px;
-  font-family: var(--font-head);
-  font-size: 14px;
-  font-weight: 700;
-  color: #ffffff;
-  background: linear-gradient(135deg, #f07c00 0%, #ff9826 100%);
-  border: none;
-  text-decoration: none;
-  box-shadow: 0 4px 16px rgba(240, 124, 0, 0.3);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.btn-service-action:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(240, 124, 0, 0.45);
-}
-
-.btn-service-action .icon {
-  width: 16px;
-  height: 16px;
-  transition: transform 0.2s;
-}
-
-.btn-service-action:hover .icon {
-  transform: translateX(4px);
-}
-
-/* ==========================================================================
-   Right Column: 5 Kinetic Capability Blocks (Light Theme)
-   ========================================================================== */
-.stage-right-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.capabilities-header {
-  display: flex;
-  justify-content: space-between;
-  padding-bottom: 12px;
-  border-bottom: 1.5px solid rgba(0, 114, 167, 0.16);
-  font-family: var(--font-head);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #64748b;
-  margin-bottom: 14px;
-}
-
-.capabilities-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.capability-motion-row {
-  display: grid;
-  grid-template-columns: 36px minmax(0, 1fr) 28px;
-  gap: 16px;
-  align-items: center;
-  padding: 16px 20px;
-  border-radius: 14px;
-  background: #f8fafc;
-  border: 1px solid rgba(0, 114, 167, 0.12);
-  transition: transform 0.25s, background-color 0.25s, border-color 0.25s, box-shadow 0.25s;
-}
-
-.capability-motion-row:hover {
-  transform: translateX(6px);
-  background: #ffffff;
-  border-color: rgba(0, 114, 167, 0.35);
-  box-shadow: 0 8px 24px rgba(0, 114, 167, 0.12);
-}
-
-.cap-index-box {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 8px;
-  background: rgba(0, 114, 167, 0.1);
-  font-family: var(--font-head);
-  font-size: 13px;
-  font-weight: 800;
-  color: #0072a7;
-  transition: background-color 0.2s, color 0.2s;
-}
-
-.capability-motion-row:hover .cap-index-box {
-  background: #f07c00;
-  color: #ffffff;
-}
-
-.cap-text-block {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.cap-name {
-  font-family: var(--font-head);
-  font-size: 15px;
-  font-weight: 700;
-  color: #0f172a;
-  line-height: 1.35;
-}
-
-.cap-tag-pill {
-  display: inline-block;
-  align-self: flex-start;
-  font-size: 11px;
-  font-weight: 600;
-  color: #0072a7;
-  background: rgba(0, 114, 167, 0.08);
-  padding: 2px 8px;
-  border-radius: 4px;
-  border: 1px solid rgba(0, 114, 167, 0.18);
-}
-
-.cap-action-mark {
-  color: #94a3b8;
-  transition: transform 0.2s, color 0.2s;
-}
-
-.capability-motion-row:hover .cap-action-mark {
-  color: #f07c00;
-  transform: translateX(4px);
-}
-
-.cap-action-mark .icon {
-  width: 16px;
-  height: 16px;
-}
-
-/* ==========================================================================
-   Bottom Collaboration Callout Banner (Light Theme)
-   ========================================================================== */
-.services-bottom-cta-banner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-  padding: 28px 36px;
-  border-radius: 20px;
-  background: #ffffff;
-  border: 1.5px solid rgba(0, 114, 167, 0.2);
-  box-shadow: 0 16px 40px rgba(0, 51, 73, 0.07);
-}
-
-.cta-banner-content {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.cta-seal-icon {
-  display: grid;
-  place-items: center;
-  flex: none;
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #0072a7, #0093d5);
-  color: #ffffff;
-  box-shadow: 0 8px 20px rgba(0, 114, 167, 0.25);
-}
-
-.cta-seal-icon .icon {
-  width: 26px;
-  height: 26px;
-}
-
-.cta-banner-content h4 {
-  font-family: var(--font-head);
-  font-size: 18px;
-  font-weight: 700;
-  margin: 0 0 6px;
-  color: #002738;
-}
-
-.cta-banner-content p {
-  font-size: 14px;
-  line-height: 1.5;
-  color: #475569;
-  margin: 0;
-  max-width: 60ch;
-}
-
-.btn-banner-contact {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 13px 24px;
-  border-radius: 12px;
-  font-family: var(--font-head);
-  font-size: 14px;
-  font-weight: 700;
-  color: #ffffff;
-  background: linear-gradient(135deg, #0072a7 0%, #0093d5 100%);
-  border: none;
-  box-shadow: 0 4px 14px rgba(0, 114, 167, 0.25);
-  transition: transform 0.2s, box-shadow 0.2s;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.btn-banner-contact:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(0, 114, 167, 0.35);
-}
-
-.btn-banner-contact .icon {
-  width: 16px;
-  height: 16px;
-}
-
-/* ==========================================================================
-   Responsive Adaptations
-   ========================================================================== */
-@media (max-width: 1024px) {
-  .services-stage-deck {
-    grid-template-columns: 1fr;
-    gap: 36px;
-    padding: 32px 24px;
-  }
-  .services-bottom-cta-banner {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 24px;
-  }
-  .btn-banner-contact {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 768px) {
-  .services-tabs-bar {
-    border-radius: 16px;
-    width: 100%;
-  }
-  .service-nav-tab {
-    flex: 1 1 calc(50% - 6px);
-    justify-content: center;
-    padding: 10px 14px;
-    font-size: 13px;
-  }
-  .standards-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 560px) {
-  .service-nav-tab {
-    flex: 1 1 100%;
-    justify-content: flex-start;
-  }
-  .capability-motion-row {
-    padding: 12px 14px;
-  }
-}
-`;

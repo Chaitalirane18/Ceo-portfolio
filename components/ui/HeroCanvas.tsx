@@ -37,18 +37,18 @@ export default function HeroCanvas() {
       }
       for (let i = 0; i < pts.length; i++) {
         const a = pts[i];
-        ctx.fillStyle = "rgba(14,114,184,0.55)";
+        ctx.fillStyle = "rgba(40, 117, 158,0.55)";
         ctx.beginPath(); ctx.arc(a.x, a.y, 1.8, 0, 6.283); ctx.fill();
         for (let j = i + 1; j < pts.length; j++) {
           const b = pts[j], d = Math.hypot(a.x - b.x, a.y - b.y);
           if (d < 130) {
-            ctx.strokeStyle = `rgba(14,114,184,${0.2 * (1 - d / 130)})`;
+            ctx.strokeStyle = `rgba(40, 117, 158,${0.2 * (1 - d / 130)})`;
             ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
           }
         }
         const dm = Math.hypot(a.x - mouse.x, a.y - mouse.y);
         if (dm < 170) {
-          ctx.strokeStyle = `rgba(245,158,11,${0.5 * (1 - dm / 170)})`;
+          ctx.strokeStyle = `rgba(245, 158, 11,${0.5 * (1 - dm / 170)})`;
           ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
         }
       }

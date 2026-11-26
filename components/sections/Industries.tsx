@@ -68,7 +68,7 @@ export default function Industries() {
           </p>
         </Reveal>
 
-        <div className="grid industries-grid">
+        <div className="grid-12 industries-grid">
           {industries.map((x, i) => {
             const isSelected = selectedIndustry === x.name;
             return (
@@ -173,14 +173,14 @@ const industriesCss = `
   align-items: center;
   gap: 8px;
   padding: 5px 16px;
-  background: rgba(0, 114, 167, 0.08);
-  border: 1px solid rgba(0, 114, 167, 0.2);
+  background: rgba(26, 101, 141, 0.08);
+  border: 1px solid rgba(26, 101, 141, 0.2);
   border-radius: 999px;
   font-family: var(--font-head);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
-  color: #0072a7;
+  color: #1a658d;
   text-transform: uppercase;
   margin-bottom: 12px;
 }
@@ -196,8 +196,8 @@ const industriesCss = `
 .industry-interactive-card {
   padding: 24px;
   border-radius: 20px;
-  background: #f8fafc;
-  border: 1.5px solid rgba(0, 114, 167, 0.12);
+  background: #fafafa;
+  border: 1.5px solid rgba(26, 101, 141, 0.12);
   cursor: pointer;
   transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s, background-color 0.25s;
   display: flex;
@@ -209,8 +209,8 @@ const industriesCss = `
 .industry-interactive-card:hover {
   transform: translateY(-4px);
   background: #ffffff;
-  border-color: rgba(0, 114, 167, 0.4);
-  box-shadow: 0 14px 30px rgba(0, 114, 167, 0.12);
+  border-color: rgba(26, 101, 141, 0.4);
+  box-shadow: 0 14px 30px rgba(26, 101, 141, 0.12);
 }
 
 .industry-interactive-card.is-active {
@@ -232,8 +232,8 @@ const industriesCss = `
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  background: rgba(0, 114, 167, 0.1);
-  color: #0072a7;
+  background: rgba(26, 101, 141, 0.1);
+  color: #1a658d;
   transition: background-color 0.2s, color 0.2s;
 }
 
@@ -255,16 +255,16 @@ const industriesCss = `
   font-size: 11px;
   font-weight: 700;
   text-transform: uppercase;
-  color: #0072a7;
+  color: #1a658d;
   letter-spacing: 0.06em;
   padding: 4px 10px;
   border-radius: 999px;
-  background: rgba(0, 114, 167, 0.08);
+  background: rgba(26, 101, 141, 0.08);
   transition: all 0.2s;
 }
 
 .industry-interactive-card:hover .expand-indicator-pill {
-  background: #0072a7;
+  background: #1a658d;
   color: #ffffff;
 }
 
@@ -282,14 +282,14 @@ const industriesCss = `
   font-family: var(--font-head);
   font-size: 17px;
   font-weight: 700;
-  color: #002738;
+  color: #09222f;
   margin: 0 0 10px;
   line-height: 1.35;
 }
 
 .industry-card-action {
   font-size: 12px;
-  color: #64748b;
+  color: #707a7f;
   font-weight: 500;
 }
 
@@ -300,11 +300,11 @@ const industriesCss = `
 }
 
 .drawer-inner-card {
-  background: linear-gradient(145deg, #ffffff 0%, #f0f7fc 100%);
+  background: linear-gradient(145deg, #ffffff 0%, #f5f6f7 100%);
   border-radius: 24px;
   padding: clamp(28px, 4vw, 36px);
-  border: 2px solid rgba(0, 114, 167, 0.25);
-  box-shadow: 0 20px 45px rgba(0, 51, 73, 0.1);
+  border: 2px solid rgba(26, 101, 141, 0.25);
+  box-shadow: 0 20px 45px rgba(11, 44, 62, 0.1);
 }
 
 .drawer-header-row {
@@ -329,7 +329,7 @@ const industriesCss = `
   font-family: var(--font-head);
   font-size: clamp(22px, 2.5vw, 30px);
   font-weight: 800;
-  color: #002738;
+  color: #09222f;
   margin: 0;
 }
 
@@ -339,7 +339,7 @@ const industriesCss = `
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.1);
   background: #ffffff;
-  color: #475569;
+  color: #525a5e;
   display: grid;
   place-items: center;
   cursor: pointer;
@@ -356,7 +356,7 @@ const industriesCss = `
 .drawer-desc {
   font-size: 16px;
   line-height: 1.65;
-  color: #334155;
+  color: #3e464a;
   margin: 0 0 24px;
   max-width: 80ch;
 }
@@ -372,7 +372,7 @@ const industriesCss = `
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #0072a7;
+  color: #1a658d;
   margin-bottom: 12px;
 }
 
@@ -388,11 +388,11 @@ const industriesCss = `
   gap: 8px;
   padding: 8px 14px;
   background: #ffffff;
-  border: 1px solid rgba(0, 114, 167, 0.2);
+  border: 1px solid rgba(26, 101, 141, 0.2);
   border-radius: 10px;
   font-size: 13px;
   font-weight: 700;
-  color: #002738;
+  color: #09222f;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
 }
 
@@ -412,20 +412,20 @@ const industriesCss = `
   align-items: center;
   gap: 8px;
   padding: 12px 24px;
-  background: linear-gradient(135deg, #0072a7 0%, #0093d5 100%);
+  background: linear-gradient(135deg, #1a658d 0%, #2180b4 100%);
   color: #ffffff;
   border-radius: 12px;
   font-family: var(--font-head);
   font-size: 14px;
   font-weight: 700;
   text-decoration: none;
-  box-shadow: 0 4px 14px rgba(0, 114, 167, 0.3);
+  box-shadow: 0 4px 14px rgba(26, 101, 141, 0.3);
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .btn-drawer-contact:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 114, 167, 0.45);
+  box-shadow: 0 8px 20px rgba(26, 101, 141, 0.45);
 }
 
 .btn-drawer-contact .icon {

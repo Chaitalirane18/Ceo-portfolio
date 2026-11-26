@@ -9,24 +9,6 @@ import DemoLink from "./DemoLink";
 
 const M = motion as any;
 
-/** Decorative mini dashboard: animated bars + trend line. Purely visual. */
-function MiniDash({ seed, icon }: { seed: number; icon: string }) {
-  const bars = Array.from({ length: 7 }, (_, i) => 28 + ((seed * 37 + i * 53) % 62));
-  const line = bars.map((b, i) => `${i === 0 ? "M" : "L"}${12 + i * 26} ${78 - b * 0.55}`).join(" ");
-  return (
-    <div className="product-visual" aria-hidden="true">
-      <span className="icon-box"><Icon name={icon} /></span>
-      <svg viewBox="0 0 180 90" className="mini-dash" fill="none">
-        {bars.map((b, i) => (
-          <rect key={i} className="mini-bar" style={{ animationDelay: `${i * 90}ms` }} x={8 + i * 26} y={82 - b * 0.6} width="14" height={b * 0.6} rx="3" />
-        ))}
-        <path className="mini-line" pathLength={1} d={line} />
-      </svg>
-    </div>
-  );
-}
-
-/** Horizontal carousel with dynamic click-to-open drawer/modal for full capabilities and demo enquiry */
 export default function ProductCarousel() {
   const reduce = useReducedMotion();
   const track = useRef<HTMLDivElement>(null);
@@ -36,8 +18,8 @@ export default function ProductCarousel() {
   const by = (dir: number) => {
     const t = track.current;
     if (!t) return;
-    const card = t.querySelector<HTMLElement>(".product-slide");
-    t.scrollBy({ left: dir * ((card?.offsetWidth ?? 340) + 24), behavior: "smooth" });
+    const card = t.querySelector<HTMLElement>(".pc-slide");
+    t.scrollBy({ left: dir * ((card?.offsetWidth ?? 270) + 24), behavior: "smooth" });
   };
 
   const pauseUntil = useRef(0);
@@ -109,9 +91,9 @@ export default function ProductCarousel() {
     <div className="carousel">
       <style dangerouslySetInnerHTML={{ __html: productModalCss }} />
 
-      <div className="container carousel-bar">
+      <div className="container carousel-bar !justify-center">
         <p className="carousel-hint">
-          <span className="click-pill-tag">Interactive</span> Click any card to expand full features &amp; live architecture specs. Drag, swipe or use arrows.
+          <span className="click-pill-tag">Interactive</span> Click a card for full details. Drag, swipe or use the arrows.
         </p>
       </div>
 
@@ -150,7 +132,7 @@ export default function ProductCarousel() {
         >
           {products.map((p, i) => (
             <article
-              className="product-slide card product-card interactive-hover-card"
+              className="pc-slide group flex h-[300px] w-[270px] flex-none cursor-pointer snap-start flex-col rounded-2xl border border-[#d9e1e7] bg-white p-5 shadow-[0_6px_20px_rgba(31,58,77,0.06)] transition duration-200 hover:-translate-y-1 hover:border-[#0072a7]/40 hover:shadow-[0_14px_30px_rgba(0,114,167,0.14)] max-sm:w-[250px]"
               key={p.name}
               onClick={() => handleCardClick(p)}
               role="button"
@@ -163,40 +145,29 @@ export default function ProductCarousel() {
               }}
               aria-label={`Open details for ${p.name}`}
             >
-              <MiniDash seed={i + 1} icon={p.icon} />
-              <div className="product-body">
-                <div className="product-top-row">
-                  <span className="product-no" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
-                  <span className="card-open-hint">
-                    <span>Click to open</span>
-                    <Icon name="arrow" />
-                  </span>
-                </div>
-                <h3>{p.name}</h3>
-                <p className="product-cat">{p.category}</p>
-                <p className="product-desc">{p.desc}</p>
+              <div className="mb-3 flex items-center justify-between">
+                <span className="grid h-10 w-10 place-items-center rounded-xl bg-[#0072a7]/10 text-[#0072a7] transition-colors group-hover:bg-[#0072a7] group-hover:text-white [&_.icon]:h-5 [&_.icon]:w-5">
+                  <Icon name={p.icon} />
+                </span>
+                <span className="font-head text-xs font-extrabold tracking-[0.08em] text-[#8a97a0]" aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+              </div>
 
-                {/* Capability tags previews */}
-                {p.features && p.features.length > 0 && (
-                  <div className="product-tags-preview" aria-hidden="true">
-                    {p.features.slice(0, 3).map((f) => (
-                      <span key={f} className="tag-chip">{f}</span>
-                    ))}
-                    {p.features.length > 3 && (
-                      <span className="tag-chip tag-chip--more">+{p.features.length - 3} more</span>
-                    )}
-                  </div>
+              <h3 className="m-0 line-clamp-2 min-h-[44px] font-head text-[17px] font-extrabold leading-snug text-[#1f3a4d]">{p.name}</h3>
+              <p className="m-0 mt-1 line-clamp-1 text-[13px] font-semibold text-[#0072a7]">{p.category}</p>
+              <p className="m-0 mt-2 line-clamp-2 text-[13px] leading-relaxed text-[#46586f]">{p.desc}</p>
+
+              <div className="mt-auto flex items-center justify-between gap-2 border-t border-[#e1e8ed] pt-3 [&_.text-link]:!gap-1.5 [&_.text-link]:!text-[13px] [&_.text-link_.icon]:!h-3.5 [&_.text-link_.icon]:!w-3.5" onClick={(e) => e.stopPropagation()}>
+                {p.url ? (
+                  <a className="text-link" href={p.url} target="_blank" rel="noopener noreferrer" draggable={false}>
+                    Explore <Icon name="out" />
+                    <span className="visually-hidden"> {p.name} (opens in a new tab)</span>
+                  </a>
+                ) : (
+                  <span className="inline-flex items-center gap-1.5 font-head text-[13px] font-bold text-[#46586f] group-hover:text-[#0072a7]">View details</span>
                 )}
-
-                <div className="product-actions" onClick={(e) => e.stopPropagation()}>
-                  {p.url && (
-                    <a className="text-link" href={p.url} target="_blank" rel="noopener noreferrer" draggable={false}>
-                      Explore Product <Icon name="out" />
-                      <span className="visually-hidden"> {p.name} (opens in a new tab)</span>
-                    </a>
-                  )}
-                  <DemoLink product={p.name} />
-                </div>
+                <DemoLink product={p.name} />
               </div>
             </article>
           ))}
@@ -285,7 +256,7 @@ const productModalCss = `
 .click-pill-tag {
   display: inline-block;
   padding: 2px 8px;
-  background: #0072a7;
+  background: #1a658d;
   color: #ffffff;
   border-radius: 999px;
   font-size: 11px;
@@ -302,8 +273,8 @@ const productModalCss = `
 
 .interactive-hover-card:hover {
   transform: translateY(-6px) !important;
-  box-shadow: 0 16px 36px rgba(0, 114, 167, 0.15) !important;
-  border-color: rgba(0, 114, 167, 0.4) !important;
+  box-shadow: 0 16px 36px rgba(26, 101, 141, 0.15) !important;
+  border-color: rgba(26, 101, 141, 0.4) !important;
 }
 
 .product-top-row {
@@ -346,11 +317,11 @@ const productModalCss = `
 .tag-chip {
   font-size: 11px;
   font-weight: 600;
-  color: #0072a7;
-  background: rgba(0, 114, 167, 0.08);
+  color: #1a658d;
+  background: rgba(26, 101, 141, 0.08);
   padding: 3px 8px;
   border-radius: 6px;
-  border: 1px solid rgba(0, 114, 167, 0.15);
+  border: 1px solid rgba(26, 101, 141, 0.15);
 }
 
 .tag-chip--more {
@@ -364,7 +335,7 @@ const productModalCss = `
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: rgba(0, 39, 56, 0.65);
+  background: rgba(9, 34, 47, 0.65);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   display: flex;
@@ -380,9 +351,9 @@ const productModalCss = `
   background: #ffffff;
   border-radius: 24px;
   padding: clamp(28px, 4vw, 40px);
-  box-shadow: 0 25px 60px rgba(0, 39, 56, 0.35);
-  border: 1.5px solid rgba(0, 114, 167, 0.2);
-  color: #0f172a;
+  box-shadow: 0 25px 60px rgba(9, 34, 47, 0.35);
+  border: 1.5px solid rgba(26, 101, 141, 0.2);
+  color: #181e21;
   max-height: 90vh;
   overflow-y: auto;
 }
@@ -395,8 +366,8 @@ const productModalCss = `
   height: 36px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  background: #f8fafc;
-  color: #475569;
+  background: #fafafa;
+  color: #525a5e;
   font-size: 16px;
   display: grid;
   place-items: center;
@@ -423,7 +394,7 @@ const productModalCss = `
   width: 58px;
   height: 58px;
   border-radius: 16px;
-  background: linear-gradient(135deg, rgba(0, 114, 167, 0.12), rgba(240, 124, 0, 0.12));
+  background: linear-gradient(135deg, rgba(26, 101, 141, 0.12), rgba(240, 124, 0, 0.12));
   border: 1.5px solid rgba(240, 124, 0, 0.3);
   color: #f07c00;
   flex: none;
@@ -441,7 +412,7 @@ const productModalCss = `
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #0072a7;
+  color: #1a658d;
   margin-bottom: 4px;
 }
 
@@ -449,7 +420,7 @@ const productModalCss = `
   font-family: var(--font-head);
   font-size: clamp(22px, 2.5vw, 28px);
   font-weight: 800;
-  color: #002738;
+  color: #09222f;
   margin: 0;
   line-height: 1.2;
 }
@@ -457,15 +428,15 @@ const productModalCss = `
 .modal-description {
   font-size: 16px;
   line-height: 1.65;
-  color: #475569;
+  color: #525a5e;
   margin: 0 0 24px;
 }
 
 .modal-features-section {
-  background: #f8fafc;
+  background: #fafafa;
   padding: 20px;
   border-radius: 16px;
-  border: 1px solid rgba(0, 114, 167, 0.12);
+  border: 1px solid rgba(26, 101, 141, 0.12);
   margin-bottom: 28px;
 }
 
@@ -475,7 +446,7 @@ const productModalCss = `
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #0072a7;
+  color: #1a658d;
   margin: 0 0 14px;
 }
 
@@ -495,7 +466,7 @@ const productModalCss = `
   border: 1px solid rgba(0, 0, 0, 0.06);
   font-size: 13px;
   font-weight: 600;
-  color: #1e293b;
+  color: #272e32;
 }
 
 .modal-feature-dot {
@@ -547,8 +518,8 @@ const productModalCss = `
   padding: 12px 20px;
   border-radius: 12px;
   background: transparent;
-  color: #0072a7;
-  border: 1.5px solid rgba(0, 114, 167, 0.35);
+  color: #1a658d;
+  border: 1.5px solid rgba(26, 101, 141, 0.35);
   font-family: var(--font-head);
   font-size: 14px;
   font-weight: 700;
@@ -557,8 +528,8 @@ const productModalCss = `
 }
 
 .modal-btn-visit:hover {
-  background: rgba(0, 114, 167, 0.08);
-  border-color: #0072a7;
+  background: rgba(26, 101, 141, 0.08);
+  border-color: #1a658d;
 }
 
 .modal-btn-visit .icon {

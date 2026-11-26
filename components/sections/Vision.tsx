@@ -120,7 +120,7 @@ export default function Vision() {
                 <div className="profile-identity-lockup">
                   <div className="profile-avatar-ring">
                     <Image
-                      src="/prasad.jpg"
+                      src="/prasad-godage.jpg"
                       alt="Prasad Shivaji Godage"
                       width={64}
                       height={64}
@@ -157,9 +157,9 @@ const visionCss = `
   position: relative;
   overflow: hidden;
   padding: clamp(72px, 9vh, 112px) 0;
-  background: radial-gradient(120% 80% at 50% 0%, #f4f8fd 0%, #ffffff 50%, #eff6fd 100%);
-  border-top: 1px solid rgba(226, 232, 240, 0.8);
-  border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+  background: radial-gradient(120% 80% at 50% 0%, #f8f9f9 0%, #ffffff 50%, #f5f6f7 100%);
+  border-top: 1px solid rgba(232, 233, 234, 0.8);
+  border-bottom: 1px solid rgba(232, 233, 234, 0.8);
 }
 
 /* Header */
@@ -176,28 +176,28 @@ const visionCss = `
   padding: 6px 18px;
   margin-bottom: 20px;
   border-radius: 999px;
-  background: rgba(37, 99, 235, 0.08);
-  border: 1px solid rgba(37, 99, 235, 0.2);
+  background: rgba(26, 101, 141, 0.08);
+  border: 1px solid rgba(26, 101, 141, 0.2);
   font-family: var(--font-head);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #174ea6;
+  color: #165375;
 }
 
 .vision-dot-pulse {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #2563eb;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25);
+  background: #1a658d;
+  box-shadow: 0 0 0 4px rgba(26, 101, 141, 0.25);
   animation: pulse-dot 2.4s infinite ease-in-out;
 }
 
 @keyframes pulse-dot {
   0%, 100% { transform: scale(0.9); opacity: 0.8; }
-  50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.15); }
+  50% { transform: scale(1.2); opacity: 1; box-shadow: 0 0 0 8px rgba(26, 101, 141, 0.15); }
 }
 
 .vision-main-title {
@@ -206,12 +206,12 @@ const visionCss = `
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: -0.02em;
-  color: #0b1f3a;
+  color: #09222f;
   text-wrap: balance;
 }
 
 .vision-title-gradient {
-  background: linear-gradient(135deg, #174ea6 0%, #2563eb 50%, #0284c7 100%);
+  background: linear-gradient(135deg, #165375 0%, #1a658d 50%, #2179a8 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -222,7 +222,7 @@ const visionCss = `
   margin: 18px auto 0;
   font-size: clamp(16px, 1.8vw, 19px);
   line-height: 1.65;
-  color: #4b5563;
+  color: #53585b;
 }
 
 /* Vision & Mission Cards Grid */
@@ -246,16 +246,16 @@ const visionCss = `
 }
 
 .vision-pillar-card--vision {
-  background: linear-gradient(145deg, #ffffff 0%, #f4f8fe 50%, #e7f2fd 100%);
-  border: 1.5px solid rgba(37, 99, 235, 0.18);
-  box-shadow: 0 10px 30px rgba(15, 44, 89, 0.06), 0 24px 60px rgba(37, 99, 235, 0.08);
+  background: linear-gradient(145deg, #ffffff 0%, #f9f9f9 50%, #f1f2f3 100%);
+  border: 1.5px solid rgba(26, 101, 141, 0.18);
+  box-shadow: 0 10px 30px rgba(39, 56, 65, 0.06), 0 24px 60px rgba(26, 101, 141, 0.08);
 }
 
 .vision-pillar-card--mission {
-  background: linear-gradient(145deg, #0b1f3a 0%, #0e294f 55%, #143e75 100%);
-  border: 1.5px solid rgba(96, 165, 250, 0.25);
-  box-shadow: 0 12px 36px rgba(11, 31, 58, 0.25), 0 28px 70px rgba(11, 31, 58, 0.35);
-  color: #ffffff;
+  background: linear-gradient(145deg, #ffffff 0%, #fff6ea 100%);
+  border: 1.5px solid rgba(240, 124, 0, 0.25);
+  box-shadow: 0 10px 30px rgba(9, 34, 47, 0.06), 0 24px 60px rgba(240, 124, 0, 0.08);
+  color: #09222f;
 }
 
 .vision-pillar-card:hover {
@@ -263,13 +263,13 @@ const visionCss = `
 }
 
 .vision-pillar-card--vision:hover {
-  border-color: rgba(37, 99, 235, 0.4);
-  box-shadow: 0 18px 40px rgba(15, 44, 89, 0.1), 0 32px 80px rgba(37, 99, 235, 0.16);
+  border-color: rgba(26, 101, 141, 0.4);
+  box-shadow: 0 18px 40px rgba(39, 56, 65, 0.1), 0 32px 80px rgba(26, 101, 141, 0.16);
 }
 
 .vision-pillar-card--mission:hover {
-  border-color: rgba(96, 165, 250, 0.5);
-  box-shadow: 0 20px 48px rgba(11, 31, 58, 0.4), 0 36px 90px rgba(23, 78, 166, 0.45);
+  border-color: rgba(240, 124, 0, 0.45);
+  box-shadow: 0 18px 40px rgba(9, 34, 47, 0.1), 0 32px 80px rgba(240, 124, 0, 0.16);
 }
 
 /* Watermarks */
@@ -289,12 +289,12 @@ const visionCss = `
 
 .vision-pillar-card--vision .card-watermark {
   color: transparent;
-  -webkit-text-stroke: 1.5px rgba(37, 99, 235, 0.12);
+  -webkit-text-stroke: 1.5px rgba(26, 101, 141, 0.12);
 }
 
 .vision-pillar-card--mission .card-watermark {
   color: transparent;
-  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.15);
+  -webkit-text-stroke: 1.5px rgba(240, 124, 0, 0.18);
 }
 
 /* Card Top Bar */
@@ -321,14 +321,14 @@ const visionCss = `
 }
 
 .card-icon-halo--blue {
-  background: linear-gradient(135deg, #2563eb, #174ea6);
+  background: linear-gradient(135deg, #1a658d, #165375);
   color: #ffffff;
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+  box-shadow: 0 8px 20px rgba(26, 101, 141, 0.35);
 }
 
 .card-icon-halo--gold {
   background: linear-gradient(135deg, #f59e0b, #d97706);
-  color: #0b1f3a;
+  color: #09222f;
   box-shadow: 0 8px 20px rgba(245, 158, 11, 0.35);
 }
 
@@ -348,9 +348,9 @@ const visionCss = `
 }
 
 .card-tag--blue {
-  background: rgba(37, 99, 235, 0.08);
-  color: #174ea6;
-  border: 1px solid rgba(37, 99, 235, 0.15);
+  background: rgba(26, 101, 141, 0.08);
+  color: #165375;
+  border: 1px solid rgba(26, 101, 141, 0.15);
 }
 
 .card-tag--gold {
@@ -377,11 +377,11 @@ const visionCss = `
 }
 
 .card-heading--vision {
-  color: #0b1f3a;
+  color: #09222f;
 }
 
 .card-heading--mission {
-  color: #ffffff;
+  color: #09222f;
 }
 
 .card-quote {
@@ -391,11 +391,11 @@ const visionCss = `
 }
 
 .vision-pillar-card--vision .card-quote {
-  color: #1f2937;
+  color: #272c2f;
 }
 
 .vision-pillar-card--mission .card-quote {
-  color: rgba(255, 255, 255, 0.92);
+  color: #272c2f;
 }
 
 /* Card Pillars / Tags */
@@ -406,11 +406,11 @@ const visionCss = `
   flex-wrap: wrap;
   gap: 10px;
   padding-top: 20px;
-  border-top: 1px solid rgba(15, 23, 42, 0.08);
+  border-top: 1px solid rgba(24, 30, 33, 0.08);
 }
 
 .vision-pillar-card--mission .card-pillars-wrap {
-  border-top-color: rgba(255, 255, 255, 0.12);
+  border-top-color: rgba(24, 30, 33, 0.08);
 }
 
 .pillar-badge {
@@ -422,15 +422,15 @@ const visionCss = `
   font-size: 13px;
   font-weight: 600;
   background: #ffffff;
-  color: #174ea6;
-  border: 1px solid rgba(37, 99, 235, 0.16);
-  box-shadow: 0 2px 6px rgba(11, 31, 58, 0.04);
+  color: #165375;
+  border: 1px solid rgba(26, 101, 141, 0.16);
+  box-shadow: 0 2px 6px rgba(9, 34, 47, 0.04);
 }
 
 .pillar-badge--gold {
-  background: rgba(255, 255, 255, 0.08);
-  color: #e0f2fe;
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #ffffff;
+  color: #8a4500;
+  border: 1px solid rgba(240, 124, 0, 0.3);
   box-shadow: none;
 }
 
@@ -448,7 +448,7 @@ const visionCss = `
 .card-ambient-glow--cyan {
   top: -60px;
   right: -60px;
-  background: radial-gradient(circle, rgba(96, 165, 250, 0.35), transparent 70%);
+  background: radial-gradient(circle, rgba(114, 177, 211, 0.35), transparent 70%);
 }
 
 .card-ambient-glow--gold {
@@ -469,9 +469,9 @@ const visionCss = `
   overflow: hidden;
   padding: clamp(36px, 4.5vw, 56px);
   border-radius: 28px;
-  background: linear-gradient(135deg, #07152b 0%, #0b1f3a 50%, #122d56 100%);
-  border: 1.5px solid rgba(96, 165, 250, 0.25);
-  box-shadow: 0 24px 64px rgba(7, 21, 43, 0.28), 0 40px 100px rgba(11, 31, 58, 0.35);
+  background: linear-gradient(135deg, #0b2c3e 0%, #09222f 50%, #283840 100%);
+  border: 1.5px solid rgba(114, 177, 211, 0.25);
+  box-shadow: 0 24px 64px rgba(19, 27, 31, 0.28), 0 40px 100px rgba(9, 34, 47, 0.35);
   color: #ffffff;
 }
 
@@ -479,7 +479,7 @@ const visionCss = `
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(900px circle at 15% 20%, rgba(37, 99, 235, 0.18), transparent 70%),
+  background: radial-gradient(900px circle at 15% 20%, rgba(26, 101, 141, 0.18), transparent 70%),
               radial-gradient(600px circle at 85% 80%, rgba(245, 158, 11, 0.12), transparent 70%);
 }
 
@@ -539,11 +539,11 @@ const visionCss = `
 }
 
 .highlight-text--blue {
-  color: #60a5fa;
+  color: #72b1d3;
 }
 
 .highlight-text--cyan {
-  color: #38bdf8;
+  color: #55acdb;
 }
 
 .highlight-text--gold {
@@ -551,7 +551,7 @@ const visionCss = `
 }
 
 .highlight-text--bright {
-  color: #93c5fd;
+  color: #bac7d1;
 }
 
 .ceo-quote-subtext {
@@ -585,7 +585,7 @@ const visionCss = `
   overflow: hidden;
   border: 2px solid #f59e0b;
   box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.2), 0 8px 20px rgba(0, 0, 0, 0.4);
-  background: #0b1f3a;
+  background: #09222f;
 }
 
 .profile-avatar-img {
@@ -634,7 +634,7 @@ const visionCss = `
   font-family: var(--font-head);
   font-size: 15px;
   font-weight: 700;
-  color: #0b1f3a;
+  color: #09222f;
   background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 100%);
   border: none;
   box-shadow: 0 8px 24px rgba(245, 158, 11, 0.35);

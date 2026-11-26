@@ -13,16 +13,12 @@ const details = [
 export default function Soulsoft() {
   return (
     <section className="section section--navy section--glow" id="soulsoft" aria-labelledby="soulsoft-title">
-      <div className="container grid soulsoft-grid">
+      <div className="container grid-12 soulsoft-grid">
         <Reveal className="span-7" x={-24} y={0}>
           <span className="eyebrow">Company profile · Soulsoft Infotech Private Limited</span>
           <h2 id="soulsoft-title">Turning Business Challenges Into Intelligent Technology Solutions.</h2>
           <div className="soulsoft-copy">
             <p className="soulsoft-motto">Transforming Ideas Into Intelligent Solutions. We Build. We Integrate. We Automate. We Modernize.</p>
-            <p>
-              Established in 2012, Soulsoft Infotech Private Limited is a software development and IT solutions company
-              headquartered in Sangamner, Maharashtra.
-            </p>
             <p>
               We specialize in developing innovative software products, customized ERP systems, SaaS applications, and
               business automation solutions.

@@ -14,7 +14,6 @@ import Industries from "@/components/sections/Industries";
 import Tech from "@/components/sections/Tech";
 import Vision from "@/components/sections/Vision";
 import Why from "@/components/sections/Why";
-import Careers from "@/components/sections/Careers";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/sections/Footer";
 
@@ -38,7 +37,6 @@ export default function Home() {
         <Tech />
         <Vision />
         <Why />
-        <Careers />
         <Contact />
       </main>
       <Footer />

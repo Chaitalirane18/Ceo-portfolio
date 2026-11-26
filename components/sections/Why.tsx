@@ -9,9 +9,8 @@ import { why } from "@/data/why";
 
 const M = motion as any;
 
-const whyDetails: { title: string; subtitle: string; icon: string; points: string[] }[] = [
+const whyDetails: { subtitle: string; icon: string; points: string[] }[] = [
   {
-    title: "14+ Years of Software Industry Experience",
     subtitle: "Established in 2012 by Prasad Godage",
     icon: "award",
     points: [
@@ -21,7 +20,6 @@ const whyDetails: { title: string; subtitle: string; icon: string; points: strin
     ],
   },
   {
-    title: "Industry-Specific Software Products",
     subtitle: "12 Purpose-Built Operational Solutions",
     icon: "layers",
     points: [
@@ -31,7 +29,6 @@ const whyDetails: { title: string; subtitle: string; icon: string; points: strin
     ],
   },
   {
-    title: "Customized & Scalable Business Solutions",
     subtitle: "Tailored to Your Operating Model",
     icon: "gear",
     points: [
@@ -41,7 +38,6 @@ const whyDetails: { title: string; subtitle: string; icon: string; points: strin
     ],
   },
   {
-    title: "Experienced Development & Technical Teams",
     subtitle: "In-House Engineering Excellence",
     icon: "users",
     points: [
@@ -51,7 +47,6 @@ const whyDetails: { title: string; subtitle: string; icon: string; points: strin
     ],
   },
   {
-    title: "End-to-End Software Development & Support",
     subtitle: "Turnkey Implementation & Dedicated SLAs",
     icon: "check",
     points: [
@@ -61,7 +56,6 @@ const whyDetails: { title: string; subtitle: string; icon: string; points: strin
     ],
   },
   {
-    title: "Focus on Innovation, Automation & Business Growth",
     subtitle: "Maximizing Client ROI & Operational Speed",
     icon: "rocket",
     points: [
@@ -81,12 +75,11 @@ export default function Why() {
   };
 
   return (
-    <section className="section why-interactive-section" id="why" aria-labelledby="why-title">
-      <style dangerouslySetInnerHTML={{ __html: whyCss }} />
+    <section className="section relative bg-gradient-to-b from-[#e9eff4] via-[#f7f8f9] to-white" id="why" aria-labelledby="why-title">
       <div className="container">
         <Reveal className="section-head text-center">
-          <div className="why-eyebrow-pill">
-            <span className="why-pulse-dot" />
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-brand/20 bg-brand/10 px-4 py-[5px] font-head text-[11px] font-bold uppercase tracking-[0.12em] text-brand-royal">
+            <span className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_0_3px_rgba(240,124,0,0.25)]" />
             <span>THE SOULSOFT ADVANTAGE</span>
           </div>
           <h2 id="why-title">Six Pillars Driving Measurable Business Value</h2>
@@ -95,7 +88,7 @@ export default function Why() {
           </p>
         </Reveal>
 
-        <div className="grid why-grid">
+        <div className="grid-12">
           {why.map((w, i) => {
             const isExpanded = activeCard === i;
             const detail = whyDetails[i];
@@ -103,7 +96,7 @@ export default function Why() {
             return (
               <Reveal className="span-4" delay={(i % 3) * 0.08} key={w}>
                 <article
-                  className={`card why-interactive-card${isExpanded ? " is-expanded" : ""}`}
+                  className={`group relative cursor-pointer overflow-hidden rounded-[20px] border-[1.5px] bg-white p-[26px] transition duration-200 hover:-translate-y-1 ${isExpanded ? "border-accent shadow-[0_16px_40px_rgba(240,124,0,0.15)]" : "border-brand/15 shadow-[0_8px_24px_rgba(0,51,73,0.05)] hover:border-brand/40 hover:shadow-[0_16px_36px_rgba(0,114,167,0.12)]"}`}
                   onClick={() => toggleCard(i)}
                   role="button"
                   tabIndex={0}
@@ -115,34 +108,34 @@ export default function Why() {
                   }}
                   aria-expanded={isExpanded}
                 >
-                  <div className="why-top-row">
-                    <span className="why-num-watermark" aria-hidden="true">{pad(i + 1)}</span>
-                    <span className="why-icon-badge">
+                  <div className="mb-3.5 flex items-center gap-3.5">
+                    <span className="font-head text-[26px] font-black leading-none text-brand/25" aria-hidden="true">{pad(i + 1)}</span>
+                    <span className={`grid h-[42px] w-[42px] place-items-center rounded-xl transition-colors duration-200 group-hover:bg-accent group-hover:text-white [&_.icon]:h-5 [&_.icon]:w-5 ${isExpanded ? "bg-accent text-white" : "bg-brand/10 text-brand"}`}>
                       <Icon name={detail.icon} />
                     </span>
-                    <span className="why-click-hint">
+                    <span className={`ml-auto inline-flex items-center gap-[5px] rounded-full px-2.5 py-[3px] text-[11px] font-bold uppercase tracking-[0.06em] group-hover:bg-brand group-hover:text-white [&_.icon]:h-3 [&_.icon]:w-3 [&_.icon]:transition-transform ${isExpanded ? "bg-brand text-white" : "bg-brand/10 text-brand"}`}>
                       <span>{isExpanded ? "Collapse" : "Open"}</span>
-                      <Icon name="arrow" className={isExpanded ? "rotate-up" : ""} />
+                      <Icon name="arrow" className={isExpanded ? "-rotate-90" : ""} />
                     </span>
                   </div>
 
-                  <h3 className="why-card-heading">{w}</h3>
-                  <p className="why-card-sub">{detail.subtitle}</p>
+                  <h3 className="mb-1.5 font-head text-lg font-bold leading-[1.35] text-[#002738]">{w}</h3>
+                  <p className="m-0 text-[13px] font-semibold text-accent-ink">{detail.subtitle}</p>
 
                   <AnimatePresence>
                     {isExpanded && (
                       <M.div
-                        className="why-drawer-content"
+                        className="overflow-hidden"
                         initial={reduce ? false : { opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                       >
-                        <div className="why-drawer-divider" />
-                        <ul className="why-points-list">
+                        <div className="mb-3.5 mt-4 h-px bg-brand/15" />
+                        <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
                           {detail.points.map((pt, ptIdx) => (
-                            <li key={ptIdx}>
-                              <span className="point-bullet" />
+                            <li key={ptIdx} className="flex items-start gap-2.5 text-[13px] leading-[1.55] text-slate-700">
+                              <span className="mt-1.5 h-1.5 w-1.5 flex-none rounded-full bg-brand" />
                               <span>{pt}</span>
                             </li>
                           ))}
@@ -159,174 +152,3 @@ export default function Why() {
     </section>
   );
 }
-
-const whyCss = `
-.why-interactive-section {
-  background: linear-gradient(180deg, #eff6ff 0%, #f8fafc 50%, #ffffff 100%);
-  position: relative;
-}
-
-.why-eyebrow-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 16px;
-  background: rgba(0, 114, 167, 0.08);
-  border: 1px solid rgba(0, 114, 167, 0.2);
-  border-radius: 999px;
-  font-family: var(--font-head);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: #0072a7;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-
-.why-pulse-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #f07c00;
-  box-shadow: 0 0 0 3px rgba(240, 124, 0, 0.25);
-}
-
-.why-interactive-card {
-  position: relative;
-  overflow: hidden;
-  padding: 26px;
-  border-radius: 20px;
-  background: #ffffff;
-  border: 1.5px solid rgba(0, 114, 167, 0.14);
-  box-shadow: 0 8px 24px rgba(0, 51, 73, 0.05);
-  cursor: pointer;
-  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-}
-
-.why-interactive-card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(0, 114, 167, 0.35);
-  box-shadow: 0 16px 36px rgba(0, 114, 167, 0.12);
-}
-
-.why-interactive-card.is-expanded {
-  border-color: #f07c00;
-  box-shadow: 0 16px 40px rgba(240, 124, 0, 0.15);
-}
-
-.why-top-row {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 14px;
-  margin-bottom: 14px;
-}
-
-.why-click-hint {
-  margin-left: auto;
-}
-
-.why-num-watermark {
-  font-family: var(--font-head);
-  font-size: 26px;
-  font-weight: 900;
-  color: rgba(0, 114, 167, 0.25);
-  line-height: 1;
-}
-
-.why-icon-badge {
-  display: grid;
-  place-items: center;
-  width: 42px;
-  height: 42px;
-  border-radius: 12px;
-  background: rgba(0, 114, 167, 0.08);
-  color: #0072a7;
-  transition: background-color 0.2s, color 0.2s;
-}
-
-.why-interactive-card:hover .why-icon-badge,
-.why-interactive-card.is-expanded .why-icon-badge {
-  background: #f07c00;
-  color: #ffffff;
-}
-
-.why-icon-badge .icon {
-  width: 20px;
-  height: 20px;
-}
-
-.why-click-hint {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #0072a7;
-  letter-spacing: 0.06em;
-  padding: 3px 10px;
-  border-radius: 999px;
-  background: rgba(0, 114, 167, 0.08);
-}
-
-.why-interactive-card:hover .why-click-hint {
-  background: #0072a7;
-  color: #ffffff;
-}
-
-.why-click-hint .icon {
-  width: 12px;
-  height: 12px;
-  transition: transform 0.25s ease;
-}
-
-.why-card-heading {
-  font-family: var(--font-head);
-  font-size: 18px;
-  font-weight: 700;
-  color: #002738;
-  margin: 0 0 6px;
-  line-height: 1.35;
-}
-
-.why-card-sub {
-  font-size: 13px;
-  font-weight: 600;
-  color: #f07c00;
-  margin: 0;
-}
-
-.why-drawer-divider {
-  height: 1px;
-  background: rgba(0, 114, 167, 0.15);
-  margin: 16px 0 14px;
-}
-
-.why-points-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.why-points-list li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 13px;
-  line-height: 1.55;
-  color: #334155;
-}
-
-.point-bullet {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #0072a7;
-  margin-top: 6px;
-  flex: none;
-}
-`;

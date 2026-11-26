@@ -31,7 +31,7 @@ export default function Journey() {
 
   return (
     <section className="section" id="journey" aria-labelledby="journey-title">
-      <div className="container grid journey-grid">
+      <div className="container grid-12 journey-grid">
         <Reveal className="span-5 journey-sticky">
           <span className="eyebrow">Entrepreneurial Journey</span>
           <h2 id="journey-title">Building Technology. Creating Opportunities.</h2>

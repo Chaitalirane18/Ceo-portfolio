@@ -63,7 +63,7 @@ export default function Hero() {
       <div className="hero-orb hero-orb--c" aria-hidden="true" />
       <HeroCanvas />
 
-      <div className="container grid hero-grid">
+      <div className="container grid-12 hero-grid">
         <div className="span-7 hero-copy">
           <M.div
             className="hero-badge-wrap"
