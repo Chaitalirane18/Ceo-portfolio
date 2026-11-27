@@ -195,15 +195,15 @@ export default function Expertise() {
 const expertiseStyles = `
 /* ==========================================================================
    Kinetic Expertise Matrix — Zero Boring Cards, Pure Executive Motion
-   Colors: Soulsoft Deep Teal-Navy (#0b2c3e), Ocean Blue (#1a658d), Orange (#f07c00)
+   Colors: Soulsoft Deep Teal-Navy (#0b2c3e), Ocean Blue (#0072a7), Orange (#f07c00)
    ========================================================================== */
 .expertise-kinetic-section {
   position: relative;
   overflow: hidden;
   padding: clamp(64px, 8vh, 100px) 0;
-  background: radial-gradient(110% 80% at 50% 0%, #ffffff 0%, #f6f7f8 60%, #eff0f1 100%);
-  border-top: 1px solid rgba(26, 101, 141, 0.12);
-  border-bottom: 1px solid rgba(26, 101, 141, 0.12);
+  background: radial-gradient(110% 80% at 50% 0%, #ffffff 0%, #f5f9fc 60%, #e9f0f6 100%);
+  border-top: 1px solid rgba(0, 114, 167, 0.12);
+  border-bottom: 1px solid rgba(0, 114, 167, 0.12);
 }
 
 /* Header */
@@ -221,14 +221,14 @@ const expertiseStyles = `
   margin-bottom: 12px;
   border-radius: 999px;
   background: #ffffff;
-  border: 1px solid rgba(26, 101, 141, 0.2);
+  border: 1px solid rgba(0, 114, 167, 0.2);
   box-shadow: 0 2px 8px rgba(11, 44, 62, 0.05);
   font-family: var(--font-head);
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #1a658d;
+  color: #0072a7;
 }
 
 .expertise-dot-orange {
@@ -243,7 +243,7 @@ const expertiseStyles = `
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #1a658d;
+  background: #0072a7;
 }
 
 .expertise-main-title {
@@ -257,7 +257,7 @@ const expertiseStyles = `
 }
 
 .title-gradient-soulsoft {
-  background: linear-gradient(135deg, #1a658d 0%, #2180b4 50%, #f07c00 100%);
+  background: linear-gradient(135deg, #0072a7 0%, #2a8cbf 50%, #f07c00 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -268,7 +268,7 @@ const expertiseStyles = `
   margin: 14px auto 0;
   font-size: clamp(15px, 1.6vw, 18px);
   line-height: 1.6;
-  color: #53585b;
+  color: #46586f;
 }
 
 /* ==========================================================================
@@ -299,7 +299,7 @@ const expertiseStyles = `
   padding: clamp(32px, 3.8vw, 44px);
   border-radius: 24px;
   background: linear-gradient(145deg, #09222f 0%, #0b2c3e 55%, #0f3a52 100%);
-  border: 1.5px solid rgba(26, 101, 141, 0.4);
+  border: 1.5px solid rgba(0, 114, 167, 0.4);
   box-shadow: 0 20px 50px rgba(11, 44, 62, 0.3);
   color: #ffffff;
 }
@@ -318,7 +318,7 @@ const expertiseStyles = `
 .radar-ring {
   position: absolute;
   border-radius: 50%;
-  border: 1.5px dashed #2180b4;
+  border: 1.5px dashed #2a8cbf;
 }
 
 .radar-ring-1 {
@@ -375,8 +375,8 @@ const expertiseStyles = `
   gap: 8px;
   padding: 4px 12px;
   border-radius: 999px;
-  background: rgba(26, 101, 141, 0.25);
-  border: 1px solid rgba(26, 101, 141, 0.4);
+  background: rgba(0, 114, 167, 0.25);
+  border: 1px solid rgba(0, 114, 167, 0.4);
   font-family: var(--font-head);
   font-size: 11px;
   font-weight: 700;
@@ -402,7 +402,7 @@ const expertiseStyles = `
 
 .console-progress-fill {
   height: 100%;
-  background: linear-gradient(90deg, #1a658d, #f07c00);
+  background: linear-gradient(90deg, #0072a7, #f07c00);
   transform-origin: left;
 }
 
@@ -423,7 +423,7 @@ const expertiseStyles = `
   width: 64px;
   height: 64px;
   border-radius: 18px;
-  background: linear-gradient(135deg, rgba(26, 101, 141, 0.4), rgba(240, 124, 0, 0.2));
+  background: linear-gradient(135deg, rgba(0, 114, 167, 0.4), rgba(240, 124, 0, 0.2));
   border: 1.5px solid rgba(240, 124, 0, 0.4);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   color: #f07c00;
@@ -503,9 +503,9 @@ const expertiseStyles = `
   font-family: var(--font-head);
   font-size: 11px;
   font-weight: 600;
-  background: rgba(26, 101, 141, 0.25);
-  color: #eeeff0;
-  border: 1px solid rgba(26, 101, 141, 0.35);
+  background: rgba(0, 114, 167, 0.25);
+  color: #e9f0f6;
+  border: 1px solid rgba(0, 114, 167, 0.35);
 }
 
 /* Console Footer Action */
@@ -560,13 +560,13 @@ const expertiseStyles = `
   display: flex;
   justify-content: space-between;
   padding: 0 16px 12px;
-  border-bottom: 1.5px solid rgba(26, 101, 141, 0.16);
+  border-bottom: 1.5px solid rgba(0, 114, 167, 0.16);
   font-family: var(--font-head);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #707a7f;
+  color: #6b7c8c;
   margin-bottom: 8px;
 }
 
@@ -593,7 +593,7 @@ const expertiseStyles = `
 }
 
 .stream-item:hover {
-  background: rgba(26, 101, 141, 0.05);
+  background: rgba(0, 114, 167, 0.05);
 }
 
 .stream-item.is-active {
@@ -616,7 +616,7 @@ const expertiseStyles = `
   left: 0;
   width: 4px;
   border-radius: 4px;
-  background: linear-gradient(180deg, #f07c00 0%, #1a658d 100%);
+  background: linear-gradient(180deg, #f07c00 0%, #0072a7 100%);
   box-shadow: 0 0 10px rgba(240, 124, 0, 0.4);
 }
 
@@ -625,7 +625,7 @@ const expertiseStyles = `
   font-family: var(--font-head);
   font-size: 16px;
   font-weight: 800;
-  color: #a0a8ac;
+  color: #9aabb9;
   transition: color 0.2s;
 }
 
@@ -651,13 +651,13 @@ const expertiseStyles = `
 
 .stream-item.is-active .stream-title,
 .stream-item:hover .stream-title {
-  color: #1a658d;
+  color: #0072a7;
 }
 
 .stream-micro-text {
   font-size: 13px;
   line-height: 1.4;
-  color: #707a7f;
+  color: #6b7c8c;
   margin: 0;
   white-space: nowrap;
   overflow: hidden;
@@ -678,8 +678,8 @@ const expertiseStyles = `
   width: 28px;
   height: 28px;
   border-radius: 6px;
-  background: rgba(26, 101, 141, 0.08);
-  color: #1a658d;
+  background: rgba(0, 114, 167, 0.08);
+  color: #0072a7;
   transition: background-color 0.2s, color 0.2s;
 }
 
@@ -702,7 +702,7 @@ const expertiseStyles = `
 
 .stream-item:hover .stream-arrow,
 .stream-item.is-active .stream-arrow {
-  color: #1a658d;
+  color: #0072a7;
   transform: translateX(4px);
 }
 

@@ -66,7 +66,7 @@ export default function Contact() {
 
   return (
     <section
-      className="relative flex min-h-[calc(100svh-72px)] items-center border-t border-[#d9e1e7] bg-gradient-to-b from-[#f4f7f9] to-white py-8 max-lg:py-12"
+      className="relative flex min-h-[calc(100svh-72px)] items-center border-t border-[#d9e3ea] bg-gradient-to-b from-[#f4f7f9] to-white py-8 max-lg:py-12"
       id="contact"
       aria-labelledby="contact-title"
     >
@@ -89,7 +89,7 @@ export default function Contact() {
         <div className="grid items-stretch gap-6 [grid-template-columns:minmax(0,1fr)_minmax(0,1fr)] max-lg:grid-cols-1">
           {/* Directory */}
           <Reveal className="h-full" x={-20} y={0}>
-            <div className="flex h-full flex-col gap-4 rounded-2xl border border-[#d9e1e7] bg-white p-6 shadow-[0_10px_30px_rgba(31,58,77,0.07)]">
+            <div className="flex h-full flex-col gap-4 rounded-2xl border border-[#d9e3ea] bg-white p-6 shadow-[0_10px_30px_rgba(31,58,77,0.07)]">
               <div className="flex items-center gap-3">
                 <span className="grid h-10 w-10 flex-none place-items-center rounded-xl bg-[#1f3a4d] text-white [&_.icon]:h-5 [&_.icon]:w-5">
                   <Icon name="award" />
@@ -127,7 +127,7 @@ export default function Contact() {
                     <a
                       key={p.tel}
                       href={`tel:${p.tel}`}
-                      className="group flex items-center gap-2.5 rounded-lg border border-[#e1e8ed] bg-[#f7f9fa] px-3 py-2 transition hover:border-[#0072a7]/40 hover:bg-white hover:shadow-[0_4px_14px_rgba(0,114,167,0.1)]"
+                      className="group flex items-center gap-2.5 rounded-lg border border-[#dde7ee] bg-[#f7f9fa] px-3 py-2 transition hover:border-[#0072a7]/40 hover:bg-white hover:shadow-[0_4px_14px_rgba(0,114,167,0.1)]"
                     >
                       <span className="grid h-7 w-7 flex-none place-items-center rounded-md bg-[#0072a7]/10 text-[#0072a7] transition group-hover:bg-[#0072a7] group-hover:text-white [&_.icon]:h-3.5 [&_.icon]:w-3.5">
                         <Icon name="phone" />
@@ -141,7 +141,7 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="mt-auto border-t border-[#e1e8ed] pt-3">
+              <div className="mt-auto border-t border-[#dde7ee] pt-3">
                 <span className={sectionLabel}>Verified Digital Presence</span>
                 <div className="flex flex-wrap gap-2">
                   {links.map((l) => (
@@ -150,7 +150,7 @@ export default function Contact() {
                       href={l.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-lg border border-[#e1e8ed] bg-[#f7f9fa] px-3 py-1.5 text-xs text-[#46586f] transition hover:border-[#0072a7]/40 hover:text-[#1f3a4d] [&_.icon]:h-3 [&_.icon]:w-3 [&_.icon]:text-[#0072a7]"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-[#dde7ee] bg-[#f7f9fa] px-3 py-1.5 text-xs text-[#46586f] transition hover:border-[#0072a7]/40 hover:text-[#1f3a4d] [&_.icon]:h-3 [&_.icon]:w-3 [&_.icon]:text-[#0072a7]"
                     >
                       <Icon name="link" />
                       <span>
@@ -167,7 +167,7 @@ export default function Contact() {
           {/* Form */}
           <Reveal className="h-full" x={20} y={0} delay={0.1}>
             <form
-              className="flex h-full flex-col gap-3 rounded-2xl border border-[#d9e1e7] bg-white p-6 shadow-[0_10px_30px_rgba(31,58,77,0.07)]"
+              className="flex h-full flex-col gap-3 rounded-2xl border border-[#d9e3ea] bg-white p-6 shadow-[0_10px_30px_rgba(31,58,77,0.07)]"
               ref={form}
               onSubmit={onSubmit}
               noValidate

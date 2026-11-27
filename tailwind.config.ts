@@ -15,7 +15,7 @@ const config: Config = {
       colors: {
         navy: { DEFAULT: "var(--navy)", 2: "var(--navy-2)", deep: "var(--navy-deep)" },
         brand: { DEFAULT: "var(--blue)", royal: "var(--royal)", sky: "var(--sky)", bright: "var(--bright)" },
-        accent: { DEFAULT: "#f07c00", soft: "#f59e0b", ink: "#b85c00" },
+        accent: { DEFAULT: "#f07c00", soft: "#f07c00", ink: "#b85c00" },
         ink: "var(--ink)",
         muted: "var(--muted)",
         ice: "var(--ice)",

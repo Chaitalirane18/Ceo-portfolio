@@ -10,7 +10,7 @@ import DemoLink from "./DemoLink";
 const M = motion as any;
 
 /** All products in one compact grid (no scrolling). Clicking a card opens the full details dialog. */
-export default function ProductCarousel() {
+export default function ProductCarousel({ compact = false }: { compact?: boolean }) {
   const reduce = useReducedMotion();
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
@@ -41,15 +41,15 @@ export default function ProductCarousel() {
   };
 
   return (
-    <div>
+    <div className={compact ? "h-full" : undefined}>
       <style dangerouslySetInnerHTML={{ __html: productModalCss }} />
 
-      <div className="container">
-        <div className="grid grid-cols-4 gap-3.5 max-lg:grid-cols-3 max-md:grid-cols-2 max-[480px]:grid-cols-1">
+      <div className={compact ? "h-full" : "container"}>
+        <div className={compact ? "grid h-full auto-rows-fr grid-cols-2 gap-2.5 max-sm:grid-cols-1" : "grid grid-cols-4 gap-3.5 max-lg:grid-cols-3 max-md:grid-cols-2 max-[480px]:grid-cols-1"}>
           {products.map((p, i) => (
             <article
               key={p.name}
-              className="group flex cursor-pointer flex-col rounded-xl border border-[#d9e1e7] bg-white p-4 shadow-[0_4px_14px_rgba(31,58,77,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-[#0072a7]/40 hover:shadow-[0_12px_26px_rgba(0,114,167,0.13)]"
+              className={`group relative flex cursor-pointer rounded-xl border border-[#d9e3ea] bg-white shadow-[0_4px_14px_rgba(31,58,77,0.05)] transition duration-200 hover:-translate-y-0.5 hover:border-[#0072a7]/40 hover:shadow-[0_12px_26px_rgba(0,114,167,0.13)] ${compact ? "items-center gap-3.5 overflow-hidden px-4 py-3 before:absolute before:inset-y-0 before:left-0 before:w-1 before:bg-gradient-to-b before:from-[#0072a7] before:to-accent before:opacity-0 before:transition-opacity before:content-[''] hover:before:opacity-100" : "flex-col p-4"}`}
               onClick={() => setSelectedProduct(p)}
               role="button"
               tabIndex={0}
@@ -61,19 +61,33 @@ export default function ProductCarousel() {
               }}
               aria-label={`Open details for ${p.name}`}
             >
-              <div className="mb-2.5 flex items-center justify-between">
-                <span className="grid h-9 w-9 place-items-center rounded-lg bg-[#0072a7]/10 text-[#0072a7] transition-colors group-hover:bg-[#0072a7] group-hover:text-white [&_.icon]:h-[18px] [&_.icon]:w-[18px]">
-                  <Icon name={p.icon} />
-                </span>
-                <span className="font-head text-[11px] font-extrabold tracking-[0.08em] text-[#9aa7b0]" aria-hidden="true">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-              </div>
+              {compact ? (
+                <>
+                  <span className="grid h-11 w-11 flex-none place-items-center rounded-xl bg-gradient-to-br from-[#0072a7]/[0.14] to-[#0072a7]/[0.05] text-[#0072a7] ring-1 ring-[#0072a7]/15 transition duration-200 group-hover:from-[#0072a7] group-hover:to-[#005f8a] group-hover:text-white [&_.icon]:h-5 [&_.icon]:w-5">
+                    <Icon name={p.icon} />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <h3 className="m-0 line-clamp-2 font-head text-[15px] font-extrabold leading-tight tracking-[-0.01em] text-[#09222f]">{p.name}</h3>
+                    <p className="m-0 mt-1 line-clamp-2 text-[12px] leading-snug text-[#5a6b7b]">{p.category}</p>
+                  </span>
+                  <Icon name="arrow" className="!h-4 !w-4 flex-none -translate-x-1 text-[#0072a7] opacity-0 transition duration-200 group-hover:translate-x-0 group-hover:opacity-100" />
+                </>
+              ) : (
+                <>
+              <div className={`flex items-center justify-between ${compact ? "mb-1.5" : "mb-2.5"}`}>
+                  <span className="grid h-9 w-9 place-items-center rounded-lg bg-[#0072a7]/10 text-[#0072a7] transition-colors group-hover:bg-[#0072a7] group-hover:text-white [&_.icon]:h-[18px] [&_.icon]:w-[18px]">
+                    <Icon name={p.icon} />
+                  </span>
+                  <span className="font-head text-[11px] font-extrabold tracking-[0.08em] text-[#9aa7b0]" aria-hidden="true">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                </div>
 
-              <h3 className="m-0 line-clamp-1 font-head text-[15px] font-extrabold leading-snug text-[#1f3a4d]">{p.name}</h3>
-              <p className="m-0 mt-0.5 line-clamp-1 text-xs font-semibold text-[#0072a7]">{p.category}</p>
-              <p className="m-0 mt-1.5 line-clamp-2 text-xs leading-relaxed text-[#5a6b7b]">{p.desc}</p>
-
+                <h3 className="m-0 line-clamp-1 font-head text-[15px] font-extrabold leading-snug text-[#1f3a4d]">{p.name}</h3>
+                <p className="m-0 mt-0.5 line-clamp-1 text-xs font-semibold text-[#0072a7]">{p.category}</p>
+                {!compact && <p className="m-0 mt-1.5 line-clamp-2 text-xs leading-relaxed text-[#5a6b7b]">{p.desc}</p>}
+                </>
+              )}
             </article>
           ))}
         </div>
@@ -161,7 +175,7 @@ const productModalCss = `
 .click-pill-tag {
   display: inline-block;
   padding: 2px 8px;
-  background: #1a658d;
+  background: #0072a7;
   color: #ffffff;
   border-radius: 999px;
   font-size: 11px;
@@ -178,8 +192,8 @@ const productModalCss = `
 
 .interactive-hover-card:hover {
   transform: translateY(-6px) !important;
-  box-shadow: 0 16px 36px rgba(26, 101, 141, 0.15) !important;
-  border-color: rgba(26, 101, 141, 0.4) !important;
+  box-shadow: 0 16px 36px rgba(0, 114, 167, 0.15) !important;
+  border-color: rgba(0, 114, 167, 0.4) !important;
 }
 
 .product-top-row {
@@ -222,11 +236,11 @@ const productModalCss = `
 .tag-chip {
   font-size: 11px;
   font-weight: 600;
-  color: #1a658d;
-  background: rgba(26, 101, 141, 0.08);
+  color: #0072a7;
+  background: rgba(0, 114, 167, 0.08);
   padding: 3px 8px;
   border-radius: 6px;
-  border: 1px solid rgba(26, 101, 141, 0.15);
+  border: 1px solid rgba(0, 114, 167, 0.15);
 }
 
 .tag-chip--more {
@@ -257,8 +271,8 @@ const productModalCss = `
   border-radius: 24px;
   padding: clamp(28px, 4vw, 40px);
   box-shadow: 0 25px 60px rgba(9, 34, 47, 0.35);
-  border: 1.5px solid rgba(26, 101, 141, 0.2);
-  color: #181e21;
+  border: 1.5px solid rgba(0, 114, 167, 0.2);
+  color: #0f1f2c;
   max-height: 90vh;
   overflow-y: auto;
 }
@@ -271,8 +285,8 @@ const productModalCss = `
   height: 36px;
   border-radius: 50%;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  background: #fafafa;
-  color: #525a5e;
+  background: #f8fbfd;
+  color: #46586f;
   font-size: 16px;
   display: grid;
   place-items: center;
@@ -299,7 +313,7 @@ const productModalCss = `
   width: 58px;
   height: 58px;
   border-radius: 16px;
-  background: linear-gradient(135deg, rgba(26, 101, 141, 0.12), rgba(240, 124, 0, 0.12));
+  background: linear-gradient(135deg, rgba(0, 114, 167, 0.12), rgba(240, 124, 0, 0.12));
   border: 1.5px solid rgba(240, 124, 0, 0.3);
   color: #f07c00;
   flex: none;
@@ -317,7 +331,7 @@ const productModalCss = `
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: #1a658d;
+  color: #0072a7;
   margin-bottom: 4px;
 }
 
@@ -333,15 +347,15 @@ const productModalCss = `
 .modal-description {
   font-size: 16px;
   line-height: 1.65;
-  color: #525a5e;
+  color: #46586f;
   margin: 0 0 24px;
 }
 
 .modal-features-section {
-  background: #fafafa;
+  background: #f8fbfd;
   padding: 20px;
   border-radius: 16px;
-  border: 1px solid rgba(26, 101, 141, 0.12);
+  border: 1px solid rgba(0, 114, 167, 0.12);
   margin-bottom: 28px;
 }
 
@@ -351,7 +365,7 @@ const productModalCss = `
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #1a658d;
+  color: #0072a7;
   margin: 0 0 14px;
 }
 
@@ -371,7 +385,7 @@ const productModalCss = `
   border: 1px solid rgba(0, 0, 0, 0.06);
   font-size: 13px;
   font-weight: 600;
-  color: #272e32;
+  color: #1c2b38;
 }
 
 .modal-feature-dot {
@@ -423,8 +437,8 @@ const productModalCss = `
   padding: 12px 20px;
   border-radius: 12px;
   background: transparent;
-  color: #1a658d;
-  border: 1.5px solid rgba(26, 101, 141, 0.35);
+  color: #0072a7;
+  border: 1.5px solid rgba(0, 114, 167, 0.35);
   font-family: var(--font-head);
   font-size: 14px;
   font-weight: 700;
@@ -433,8 +447,8 @@ const productModalCss = `
 }
 
 .modal-btn-visit:hover {
-  background: rgba(26, 101, 141, 0.08);
-  border-color: #1a658d;
+  background: rgba(0, 114, 167, 0.08);
+  border-color: #0072a7;
 }
 
 .modal-btn-visit .icon {

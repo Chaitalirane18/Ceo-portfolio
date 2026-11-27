@@ -32,16 +32,9 @@ export const expertise: ExpertiseItem[] = [
     scope: "Multi-tenant SaaS architectures, comprehensive ERP modules, and high-concurrency transactional systems.",
     tags: ["Enterprise ERP", "SaaS Engineering", "Transactional Integrity", "GST & Compliance"],
   },
+  
   {
     num: "04",
-    icon: "flow",
-    title: "Business Process Automation",
-    text: "Replacing manual friction with intelligent, error-free, and automated workflows across all operational levels.",
-    scope: "Workflow engine design, automated alerts, document routing, and robotic operational efficiency.",
-    tags: ["Workflow Automation", "Operational Efficiency", "Frictionless Systems", "Error Reduction"],
-  },
-  {
-    num: "05",
     icon: "rocket",
     title: "Digital Transformation & Technology Consulting",
     text: "Guiding traditional businesses through seamless modernization from paper-based and legacy tools to modern cloud systems.",
@@ -49,7 +42,7 @@ export const expertise: ExpertiseItem[] = [
     tags: ["Legacy Migration", "Cloud Modernization", "Digital Strategy", "Executive Advisory"],
   },
   {
-    num: "06",
+    num: "05",
     icon: "compass",
     title: "Product Planning & Market Expansion",
     text: "Identifying unmet commercial needs and launching tailored software solutions across diverse industry verticals.",
@@ -57,7 +50,7 @@ export const expertise: ExpertiseItem[] = [
     tags: ["Domain Penetration", "Feature Scoping", "Market Validation", "Go-To-Market"],
   },
   {
-    num: "07",
+    num: "06",
     icon: "brief",
     title: "Sales Strategy & Business Development",
     text: "Building direct distribution channels, channel partnerships, and long-term customer-focused commercial growth.",
@@ -65,7 +58,7 @@ export const expertise: ExpertiseItem[] = [
     tags: ["Client Acquisition", "Channel Partnerships", "Strategic Alliances", "Revenue Models"],
   },
   {
-    num: "08",
+    num: "07",
     icon: "users",
     title: "Team Leadership & Project Execution",
     text: "Nurturing engineering and business teams to deliver high-quality technology solutions with discipline and purpose.",

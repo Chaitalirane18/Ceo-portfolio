@@ -3,9 +3,10 @@ import ProductCarousel from "./ProductCarousel";
 
 export default function Products() {
   return (
-    <section
-      className="relative flex min-h-[calc(100svh-72px)] flex-col justify-center border-t border-[#d9e1e7] bg-gradient-to-b from-white to-[#f4f7f9] py-8 max-lg:py-14"
-      id="products"
+    <div
+      className="relative flex flex-col justify-center pb-12 pt-8 max-lg:pb-14"
+      role="tabpanel"
+      id="products-panel"
       aria-labelledby="products-title"
     >
       <div className="container">
@@ -25,6 +26,6 @@ export default function Products() {
       <Reveal>
         <ProductCarousel />
       </Reveal>
-    </section>
+    </div>
   );
 }
