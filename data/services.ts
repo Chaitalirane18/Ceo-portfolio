@@ -99,3 +99,143 @@ export const services: ServiceCategory[] = [
     ],
   },
 ];
+
+/* ─── /services page typed data ─────────────────────────────── */
+export type ServiceIconKey = "Code2" | "Workflow" | "Cloud" | "Briefcase";
+
+export type Service = {
+  id: string;
+  number: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  icon: ServiceIconKey;
+  points: string[];
+};
+
+export const serviceCards: Service[] = [
+  {
+    id: "software-development",
+    number: "01",
+    title: "Software Development",
+    subtitle: "Architecture, Scalability & Engineering",
+    description:
+      "Engineering bespoke web, mobile, SaaS, and enterprise ERP systems architected for performance, security, and long-term business growth.",
+    icon: "Code2",
+    points: [
+      "Custom Software Development",
+      "Enterprise ERP Development",
+      "SaaS Product Development",
+      "Web Application Development",
+      "Android & iOS Application Development",
+    ],
+  },
+  {
+    id: "integration-modernization",
+    number: "02",
+    title: "Integration & Modernization",
+    subtitle: "API Connectivity & Legacy Migration",
+    description:
+      "Connecting disparate systems, migrating legacy desktop software to modern cloud environments, and optimizing mission-critical database architectures.",
+    icon: "Workflow",
+    points: [
+      "Software Integration & API Development",
+      "Legacy Software Modernization",
+      "Desktop-to-Cloud Migration",
+      "Third-Party Software Integration",
+      "Database Development & Optimization",
+    ],
+  },
+  {
+    id: "cloud-automation",
+    number: "03",
+    title: "Cloud & Automation",
+    subtitle: "DevOps, Workflow Engines & AI",
+    description:
+      "Deploying resilient hybrid and cloud architectures, automating manual operational pipelines, and empowering teams with data intelligence and AI solutions.",
+    icon: "Cloud",
+    points: [
+      "Cloud & On-Premise Deployment",
+      "Business Process Automation",
+      "Workflow Management Systems",
+      "Data Analytics & Business Intelligence",
+      "AI-Enabled Software Solutions",
+    ],
+  },
+  {
+    id: "business-technology-solutions",
+    number: "04",
+    title: "Business & Technology Solutions",
+    subtitle: "Consulting, CRM & Dedicated Teams",
+    description:
+      "Strategic IT consulting, industry-tailored platforms, CRM pipelines, and dedicated software development engineering teams delivering measurable ROI.",
+    icon: "Briefcase",
+    points: [
+      "IT Consulting & Digital Transformation",
+      "Customized Industry-Specific Applications",
+      "CRM & Sales Automation",
+      "Software Maintenance & Technical Support",
+      "Dedicated Software Development Projects",
+    ],
+  },
+];
+
+export type IndustryIconKey =
+  | "Sprout"
+  | "Factory"
+  | "Store"
+  | "HeartPulse"
+  | "GraduationCap"
+  | "ShoppingCart"
+  | "Briefcase"
+  | "Landmark"
+  | "Building2";
+
+export type IndustryItem = {
+  label: string;
+  icon: IndustryIconKey;
+};
+
+export const serviceIndustries: IndustryItem[] = [
+  { label: "Agriculture & Agribusiness", icon: "Sprout" },
+  { label: "Manufacturing & Distribution", icon: "Factory" },
+  { label: "Retail & Wholesale", icon: "Store" },
+  { label: "Pharmaceuticals & Healthcare", icon: "HeartPulse" },
+  { label: "Education & Training", icon: "GraduationCap" },
+  { label: "E-Commerce", icon: "ShoppingCart" },
+  { label: "Professional Services", icon: "Briefcase" },
+  { label: "Political & Constituency Administration", icon: "Landmark" },
+  { label: "Small & Medium Enterprises (MSMEs)", icon: "Building2" },
+];
+
+export type TechGroupItem = {
+  label: string;
+  tools: string[];
+};
+
+export const serviceTechGroups: TechGroupItem[] = [
+  {
+    label: "Backend",
+    tools: ["Node.js", "Python", "C#", ".NET Core", "ASP.NET MVC", "Web API", "PHP"],
+  },
+  {
+    label: "Frontend",
+    tools: ["React.js", "Nest.js", "HTML", "CSS", "JavaScript"],
+  },
+  {
+    label: "Mobile",
+    tools: ["Flutter", "Android Application Development"],
+  },
+  {
+    label: "Databases",
+    tools: ["Microsoft SQL Server", "MySQL", "PostgreSQL"],
+  },
+  {
+    label: "Cloud & Infrastructure",
+    tools: ["Microsoft Azure", "IIS", "Cloud Hosting", "VPN"],
+  },
+  {
+    label: "Other",
+    tools: ["REST APIs", "Third-Party Integrations", "Git", "Database Architecture"],
+  },
+];

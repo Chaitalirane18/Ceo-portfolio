@@ -41,8 +41,8 @@
   --radius: 12px;
   --shadow: 0 1px 2px rgba(15, 37, 49, 0.06), 0 10px 30px rgba(15, 37, 49, 0.09);
   /* type */
-  --font-head: var(--font-jakarta), "Segoe UI", system-ui, sans-serif;
-  --font-body: var(--font-inter), "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-head: "Plus Jakarta Sans", var(--font-jakarta, "Segoe UI"), system-ui, sans-serif;
+  --font-body: "Inter", var(--font-inter, "Segoe UI"), system-ui, -apple-system, sans-serif;
   /* layout */
   --section: 96px;
   --header-h: 72px;

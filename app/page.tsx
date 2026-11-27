@@ -1,44 +1,30 @@
-import Loader from "@/components/ui/Loader";
-import CursorGlow from "@/components/ui/CursorGlow";
-import BackToTop from "@/components/ui/BackToTop";
-import Navbar from "@/components/sections/Navbar";
-import Hero from "@/components/sections/Hero";
-import ServicesMarquee from "@/components/sections/ServicesMarquee";
-import About from "@/components/sections/About";
-import Expertise from "@/components/sections/Expertise";
-import Journey from "@/components/sections/Journey";
-import Soulsoft from "@/components/sections/Soulsoft";
-import ProductsServices from "@/components/sections/ProductsServices";
-import Industries from "@/components/sections/Industries";
-import Tech from "@/components/sections/Tech";
-import Vision from "@/components/sections/Vision";
-import Why from "@/components/sections/Why";
-import Contact from "@/components/sections/Contact";
-import Footer from "@/components/sections/Footer";
+import Dots from "@/components/portfolio/Dots";
+import { Hero, Statement } from "@/components/portfolio/Hero";
+import { Story, Numbers } from "@/components/portfolio/Story";
+import Journey from "@/components/portfolio/Journey";
+import Reach from "@/components/portfolio/Reach";
+import { Products, Beliefs } from "@/components/portfolio/Products";
+import { Community } from "@/components/portfolio/Community";
+import Behaviors from "@/components/portfolio/Behaviors";
+import { Cta } from "@/components/site/Blocks";
 
 export default function Home() {
   return (
     <>
-      <Loader />
-      <CursorGlow />
-      <a className="skip-link" href="#main">Skip to content</a>
-      <Navbar />
+      <Dots />
       <main id="main">
         <Hero />
-        <ServicesMarquee />
-        <About />
-        <Expertise />
+        <Statement />
+        <Story />
+        <Numbers />
         <Journey />
-        <Soulsoft />
-        <ProductsServices />
-        <Industries />
-        <Tech />
-        <Vision />
-        <Why />
-        <Contact />
+        <Reach />
+        <Products />
+        <Beliefs />
+        <Community />
+        <Cta />
       </main>
-      <Footer />
-      <BackToTop />
+      <Behaviors />
     </>
   );
 }
