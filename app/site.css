@@ -663,19 +663,20 @@ a.magnetic, .round.magnetic { display: inline-block; }
   .js .r-row.on .r-card { transform: none; }
 }
 
-/* 10. REACH: pinned zoom-out (stylised map) */
+/* 10. REACH: pinned zoom-out from Sangamner to the world */
 .reach { padding: 0; background: #07090c; color: #fff; }
 .js .reach { height: 460vh; }
 .z-pin { position: relative; height: 100vh; min-height: 560px; overflow: hidden; }
 .js .z-pin { position: sticky; top: 0; }
 .z-pin::before { content: ""; position: absolute; inset: 0 0 auto; height: 280px; z-index: 2; pointer-events: none; background: linear-gradient(#07090c, rgba(7, 9, 12, 0)); }
 .cam { position: absolute; inset: 0; }
-.z-grid { position: absolute; inset: -50%; will-change: transform, opacity;
-          background-image: linear-gradient(rgba(120, 150, 190, .18) 1px, transparent 1px), linear-gradient(90deg, rgba(120, 150, 190, .18) 1px, transparent 1px);
-          background-position: center; -webkit-mask-image: radial-gradient(circle, #000 20%, transparent 62%); mask-image: radial-gradient(circle, #000 20%, transparent 62%); }
-.z-region { position: absolute; left: 50%; top: 50%; border-radius: 50%; will-change: transform, opacity; opacity: 0; }
-.z-region.mh { background: rgba(243, 156, 18, .14); border: 2px solid var(--orange); }
-.z-region.in { background: rgba(120, 150, 190, .1); border: 2px solid rgba(255, 255, 255, .35); }
+.z-town { position: absolute; left: 0; top: 0; width: 1280px; display: grid; grid-template-columns: repeat(5, 256px); transform-origin: 0 0; will-change: transform, opacity;
+          filter: invert(1) hue-rotate(180deg) brightness(.8) contrast(.95) saturate(.5);
+          -webkit-mask-image: radial-gradient(circle, #000 35%, transparent 62%); mask-image: radial-gradient(circle, #000 35%, transparent 62%); }
+.z-town img { width: 256px; height: 256px; max-width: none; }
+.z-map { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; pointer-events: none; will-change: opacity; }
+.z-map .st { fill: #17212d; stroke: #44546a; stroke-width: 1; }
+.z-map .mh { fill: rgba(243, 156, 18, .22); stroke: var(--orange); stroke-width: 2; }
 .cam .earth { position: absolute; left: 50%; top: 50%; max-width: none; border-radius: 50%; transform: translate(-50%, -50%); opacity: 0;
               background: radial-gradient(circle at 35% 30%, #3b82c4, #123a66 55%, #07182c); object-fit: cover; }
 .z-place { position: absolute; left: 0; top: 0; opacity: 0; pointer-events: none; }
@@ -692,6 +693,7 @@ a.magnetic, .round.magnetic { display: inline-block; }
 .z-stages { position: absolute; right: var(--gutter); top: 110px; z-index: 3; display: grid; gap: 8px; }
 .z-stages button { padding: 10px 18px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .18); background: rgba(13, 21, 32, .7); color: rgba(255, 255, 255, .75); cursor: pointer; text-align: left; font-weight: 500; transition: background .35s, color .35s, border-color .35s; }
 .z-stages button:hover { border-color: rgba(255, 255, 255, .5); }
+.z-stages button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
 .z-stages button.on { background: var(--orange); border-color: var(--orange); color: #1b1200; font-weight: 600; }
 .z-cap { position: absolute; left: var(--gutter); bottom: 48px; z-index: 3; width: min(420px, calc(100vw - 40px)); background: rgba(13, 21, 32, .82); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, .12); border-radius: 18px; padding: 24px 26px; transition: opacity .35s, transform .35s var(--ease); }
 .z-cap.swap { opacity: 0; transform: translateY(12px); }
@@ -699,6 +701,8 @@ a.magnetic, .round.magnetic { display: inline-block; }
 .z-cap strong { display: block; font-size: clamp(1.8rem, 3vw, 2.4rem); letter-spacing: -.03em; color: var(--orange); margin: 6px 0 8px; line-height: 1.1; }
 .z-cap p { margin: 0; color: rgba(255, 255, 255, .75); }
 .reach .ph { background: rgba(243, 156, 18, .2); color: #ffd58a; }
+.z-credit { position: absolute; right: 12px; bottom: 8px; z-index: 3; font-size: .7rem; color: rgba(255, 255, 255, .45); }
+.z-credit a { text-decoration: underline; }
 @media (max-width: 820px) {
   .z-head { top: 88px; right: 20px; }
   .z-stages { display: none; }

@@ -115,9 +115,10 @@ export default function Behaviors() {
       return ZOOM_KEYS[ZOOM_KEYS.length - 1][1];
     };
     const reach = $("#reach"), cam = $("#cam"), zCap = $("#zCap");
-    const zGrid = $("#zGrid"), zMh = $("#zMh"), zIn = $("#zIn"), zEarth = $("#zEarth"), zHere = $("#zHere"), zCore = $(".z-core");
+    const zTown = $("#zTown"), zMap = $("#zMap"), zEarth = $("#zEarth"), zHere = $("#zHere"), zCore = $(".z-core");
     const zPlaces = $$(".z-place");
     const zBtns = $$("#zStages button");
+    const TILE_KM = 4.6092, TOWN_X = -12.177, TOWN_Y = -11.901;
     let zStage = -1, zManual: number | null = null, capTimer: ReturnType<typeof setTimeout> | undefined;
     cleanups.push(() => clearTimeout(capTimer));
     const reachProgress = (vh: number) => {
@@ -125,21 +126,16 @@ export default function Behaviors() {
       const r = reach.getBoundingClientRect();
       return clamp01(-r.top / (r.height - vh));
     };
-    const placeCircle = (el: El, x: number, y: number, radiusKm: number, ppk: number, opacity: number) => {
-      el.style.width = el.style.height = radiusKm * 2 * ppk + "px";
-      el.style.transform = `translate(calc(-50% + ${x * ppk}px), calc(-50% + ${y * ppk}px))`;
-      el.style.opacity = opacity;
-      el.style.visibility = opacity < 0.01 ? "hidden" : "visible";
-    };
     const updateZoom = (vh: number) => {
       const p = reachProgress(vh);
       const W = cam.clientWidth, H = cam.clientHeight, ref = Math.min(W, H) * 0.9;
       const km = viewKmAt(p), ppk = ref / km;
 
-      zGrid.style.backgroundSize = `${Math.max(ppk, 6)}px ${Math.max(ppk, 6)}px`;
-      zGrid.style.opacity = String(1 - rise(km, 40, 260));
-      placeCircle(zMh, 130, 70, 330, ppk, rise(km, 60, 300) * (1 - rise(km, 2500, 5000)));
-      placeCircle(zIn, 520, -300, 1500, ppk, rise(km, 700, 1800) * (1 - rise(km, 4500, 8000)));
+      zTown.style.transform = `translate(${W / 2 + TOWN_X * ppk}px, ${H / 2 + TOWN_Y * ppk}px) scale(${ppk * TILE_KM / 256})`;
+      zTown.style.opacity = String(1 - rise(km, 25, 70));
+      zTown.style.visibility = km > 80 ? "hidden" : "visible";
+      zMap.setAttribute("viewBox", `${-W / 2 / ppk} ${-H / 2 / ppk} ${W / ppk} ${H / ppk}`);
+      zMap.style.opacity = String(rise(km, 20, 60) * (1 - rise(km, 4500, 8000)));
       zPlaces.forEach((el) => {
         const x = +el.dataset.x, y = +el.dataset.y, min = +el.dataset.min, max = +el.dataset.max;
         el.style.transform = `translate(${W / 2 + x * ppk}px, ${H / 2 + y * ppk}px)`;
@@ -155,7 +151,10 @@ export default function Behaviors() {
       reachStages.forEach((x, i) => { if (p >= x.at) st = i; });
       if (st === zStage) return;
       zStage = st;
-      zBtns.forEach((b, i) => b.classList.toggle("on", i === st));
+      zBtns.forEach((b, i) => {
+        b.classList.toggle("on", i === st);
+        b.setAttribute("aria-pressed", String(i === st));
+      });
       zCap.classList.add("swap");
       clearTimeout(capTimer);
       capTimer = setTimeout(() => {
