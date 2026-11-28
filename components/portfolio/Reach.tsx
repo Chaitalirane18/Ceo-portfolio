@@ -1,4 +1,5 @@
 import { reachPlaces, reachStages } from "@/data/portfolio";
+import ReachStages from "./ReachStages";
 
 const townTiles = Array.from({ length: 25 }, (_, index) => ({
   src: `/images/maps/sangamner/t_${Math.floor(index / 5)}_${index % 5}.png`,
@@ -31,11 +32,7 @@ export default function Reach() {
           <span className="kicker">Reach</span>
           <h2 className="h2 lines">Built in Sangamner. Used across India and abroad.</h2>
         </div>
-        <div className="z-stages" id="zStages" role="group" aria-label="Jump to a stage">
-          {reachStages.map((s, index) => (
-            <button type="button" key={s.name} aria-pressed={index === 0}>{s.name}</button>
-          ))}
-        </div>
+        <ReachStages />
         <div className="z-cap" id="zCap" aria-live="polite">
           <span className="z-name">{reachStages[0].name}</span>
           <strong>{reachStages[0].count}</strong>

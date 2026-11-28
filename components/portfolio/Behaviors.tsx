@@ -117,7 +117,7 @@ export default function Behaviors() {
     const reach = $("#reach"), cam = $("#cam"), zCap = $("#zCap");
     const zTown = $("#zTown"), zMap = $("#zMap"), zEarth = $("#zEarth"), zHere = $("#zHere"), zCore = $(".z-core");
     const zPlaces = $$(".z-place");
-    const zBtns = $$("#zStages button");
+    const getStageButtons = () => $$("#zStages button");
     const TILE_KM = 4.6092, TOWN_X = -12.177, TOWN_Y = -11.901;
     let zStage = -1, zManual: number | null = null, capTimer: ReturnType<typeof setTimeout> | undefined;
     cleanups.push(() => clearTimeout(capTimer));
@@ -151,7 +151,7 @@ export default function Behaviors() {
       reachStages.forEach((x, i) => { if (p >= x.at) st = i; });
       if (st === zStage) return;
       zStage = st;
-      zBtns.forEach((b, i) => {
+      getStageButtons().forEach((b, i) => {
         b.classList.toggle("on", i === st);
         b.setAttribute("aria-pressed", String(i === st));
       });
@@ -166,13 +166,19 @@ export default function Behaviors() {
       }, 200);
     };
     if (reduce) { reach.style.height = "auto"; zManual = 1; }
-    zBtns.forEach((b, i) => b.addEventListener("click", () => {
-      const at = reachStages[i].at + 0.03;
+    window.addEventListener("reach:stage-select", (event) => {
+      const index = (event as CustomEvent<number>).detail;
+      const stage = reachStages[index];
+      if (!stage) {
+        console.error("Received an invalid reach stage selection.", index);
+        return;
+      }
+      const at = stage.at + 0.03;
       if (reduce) { zManual = at; updateZoom(innerHeight); return; }
       const y = reach.offsetTop + at * (reach.offsetHeight - innerHeight);
       const l = store.lenis;
       if (l) l.scrollTo(y, { duration: 1.2 }); else scrollTo({ top: y });
-    }, opts));
+    }, opts);
 
     // LEFT DOT MENU
     const dotsNav = $("#dotsNav"), dots = [...dotsNav.querySelectorAll("a")] as El[];
