@@ -124,7 +124,8 @@ export default function Behaviors() {
     const reachProgress = (vh: number) => {
       if (zManual !== null) return zManual;
       const r = reach.getBoundingClientRect();
-      return clamp01(-r.top / (r.height - vh));
+      const scrollRange = r.height - vh;
+      return scrollRange > 0 ? clamp01(-r.top / scrollRange) : 0;
     };
     const updateZoom = (vh: number) => {
       const p = reachProgress(vh);

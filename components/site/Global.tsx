@@ -16,6 +16,7 @@ export default function Global() {
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     type El = any;
+    document.documentElement.classList.add("js");
     const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
     const $ = (s: string): El => document.querySelector(s);
